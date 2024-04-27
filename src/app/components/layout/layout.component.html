@@ -1,0 +1,18 @@
+<div class="layout">
+    @if(user_on_demand){
+    <section class="measures">
+
+        <app-graph [measures]='user_on_demand.historical_measurements' [type]='"Weight"'></app-graph>
+        <app-graph [measures]='user_on_demand.historical_measurements' [type]='"Waist_circumference"'></app-graph>
+        <app-graph [measures]='user_on_demand.historical_measurements' [type]='"Hip_circumference"'></app-graph>
+    </section>
+    <section class="measures">
+
+        <app-graph [measures]='user_on_demand.historical_bio_data' [type]='"Weight"'></app-graph>
+        <app-graph [measures]='user_on_demand.historical_bio_data' [type]='"BMI"'></app-graph>
+        <app-graph [measures]='user_on_demand.historical_bio_data' [type]='"Body_fat"'></app-graph>
+    </section>
+    }
+</div>
+
+<!-- [bio_data]='user_on_demand.historical_bio_data' -->

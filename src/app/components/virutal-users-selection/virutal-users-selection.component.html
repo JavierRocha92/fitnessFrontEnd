@@ -1,0 +1,7 @@
+<div class="virtual-users">
+   @if(virtual_users && virtual_users.length){
+    @for(virtual_user of virtual_users; track virtual_user.ID;){
+        <app-user-avatar [id] = 'virtual_user.ID'></app-user-avatar>
+    }
+   }
+</div>
