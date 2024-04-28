@@ -1,7 +1,11 @@
 <div class="virtual-users">
-   @if(virtual_users && virtual_users.length){
+    @if(virtual_users && virtual_users.length){
+       <h1>Estos son tus usuarios virtuales</h1>
     @for(virtual_user of virtual_users; track virtual_user.ID;){
         <app-user-avatar [id] = 'virtual_user.ID'></app-user-avatar>
     }
+   }@else{
+    <h1>Aun no tienes usuarios virtuales </h1>
+    <h2>Prueb a agregar un perfil nuevo ++</h2>
    }
 </div>

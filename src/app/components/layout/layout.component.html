@@ -2,6 +2,20 @@
     @if(user_on_demand){
     <section class="measures">
 
+        <app-area [measures]='user_on_demand.historical_measurements' [bg_color] = '"red"' [uds] = '"cm"' [type]='"Weight"'></app-area>
+        <app-area [measures]='user_on_demand.historical_measurements' [bg_color] = '"blue"' [uds] = '"cm"' [type]='"Waist_circumference"'></app-area>
+        <app-area [measures]='user_on_demand.historical_measurements' [bg_color] = '"green"' [uds] = '"cm"' [type]='"Hip_circumference"'></app-area>
+    </section>
+    <section class="measures">
+
+        <app-area [measures]='user_on_demand.historical_bio_data' [bg_color] = '"red"' [uds] = '"cm"' [type]='"Weight"'></app-area>
+        <app-area [measures]='user_on_demand.historical_bio_data' [bg_color] = '"blue"' [uds] = '"cm"' [type]='"BMI"'></app-area>
+        <app-area [measures]='user_on_demand.historical_bio_data' [bg_color] = '"green"' [uds] = '"cm"' [type]='"Body_fat"'></app-area>
+    </section>
+    }
+    <!-- @if(user_on_demand){
+    <section class="measures">
+
         <app-graph [measures]='user_on_demand.historical_measurements' [type]='"Weight"'></app-graph>
         <app-graph [measures]='user_on_demand.historical_measurements' [type]='"Waist_circumference"'></app-graph>
         <app-graph [measures]='user_on_demand.historical_measurements' [type]='"Hip_circumference"'></app-graph>
@@ -12,7 +26,7 @@
         <app-graph [measures]='user_on_demand.historical_bio_data' [type]='"BMI"'></app-graph>
         <app-graph [measures]='user_on_demand.historical_bio_data' [type]='"Body_fat"'></app-graph>
     </section>
-    }
+    } -->
 </div>
 
 <!-- [bio_data]='user_on_demand.historical_bio_data' -->

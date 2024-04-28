@@ -1,5 +1,18 @@
 .layout{
     width: 100%;
-    border: 2px solid black;
+    border: 5px solid black;
     display: flex;
+    gap: 32px;
+    padding: 40px;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.measures{
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    justify-content: space-around;
+    align-items: center;
+    border: 2px solid red;
 }
