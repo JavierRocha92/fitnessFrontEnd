@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Virtual_users } from '../../types/user';
 import { UsersService } from '../../services/users.service';
 import { UserAvatarComponent } from '../user-avatar/user-avatar.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-virutal-users-selection',
@@ -13,8 +14,15 @@ import { UserAvatarComponent } from '../user-avatar/user-avatar.component';
 export class VirutalUsersSelectionComponent implements OnInit {
   virtual_users: Virtual_users | undefined | null;
 
-  constructor(private user_service: UsersService) {}
+  constructor(private user_service: UsersService, private router : Router) {}
   ngOnInit(): void {
     this.virtual_users = this.user_service.getVirtualUserData();
   }
+
+  logOut(){
+    this.user_service.logOut()
+    this.router.navigate(['/'])
+  }
+  
+
 }

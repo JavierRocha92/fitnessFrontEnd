@@ -1,16 +1,13 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div id="chart" (click) = 'handleChartClick($event)'>
-    <apx-chart class="chart-component"
+<div id="chart" class="multi-area">
+    <apx-chart
+    class="apx"
       [series]="chartOptions.series"
       [chart]="chartOptions.chart"
       [xaxis]="chartOptions.xaxis"
-      [yaxis]="chartOptions.yaxis"
       [stroke]="chartOptions.stroke"
       [tooltip]="chartOptions.tooltip"
-      [grid]="chartOptions.grid"
       [dataLabels]="chartOptions.dataLabels"
-      [title] = "chartOptions.title"
-      [colors] = "chartOptions.colors"
     ></apx-chart>
   </div>
   

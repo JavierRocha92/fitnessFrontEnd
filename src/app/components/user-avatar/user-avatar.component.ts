@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 })
 export class UserAvatarComponent {
   @Input() id!: number
+  @Input() name! : string
 
   constructor(private router : Router){}
 

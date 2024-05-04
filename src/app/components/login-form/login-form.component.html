@@ -6,7 +6,7 @@
         @if(register){
         <div class="form__section">
             <div class="flex-column">
-                <label>First name 
+                <label>First name
                     <p class="error">
                         @if(form.get('first_name')?.invalid && form.get('first_name')?.touched){
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -17,7 +17,7 @@
                         @if(form.get('first_name')?.hasError('required')){
                         El first name dede estar relleno
                         }
-                        
+
                         }
                     </p>
                 </label>
@@ -34,9 +34,9 @@
                 <input [formControl]='first_nameControl' type="text" class="input" placeholder="Enter your First name">
             </div>
             <p>javier</p>
-          
+
             <div class="flex-column">
-                <label>Last name 
+                <label>Last name
                     <p class="error">
                         @if(form.get('last_name')?.invalid && form.get('last_name')?.touched){
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -47,7 +47,7 @@
                         @if(form.get('last_name')?.hasError('required')){
                         El last name dede estar relleno
                         }
-                        
+
                         }
                     </p>
                 </label>
@@ -62,7 +62,7 @@
                 </svg>
                 <input [formControl]='last_nameControl' type="text" class="input" placeholder="Enter your last name">
             </div>
-           
+
         </div>
         <p>javier</p>
         }
@@ -103,9 +103,8 @@
                 </svg>
                 <input [formControl]='emailControl' type="text" class="input" placeholder="Enter your Email">
             </div>
-            <!-- <p>elena.ruiz&#64;example.com</p> -->
-            <!-- <p>javier.garcia&#64;example.com</p> -->
-            <p>juan.garcia&#64;example.com</p>
+            
+            <p>jgonzalez0&#64;amazon.de</p>
 
 
             <div class="flex-column">
@@ -126,7 +125,7 @@
                         }
                         }
                     </p>
-                     </label>
+                </label>
             </div>
             <div class="inputForm">
                 <svg height="20" viewBox="-64 0 512 512" width="20" xmlns="http://www.w3.org/2000/svg">
@@ -145,8 +144,7 @@
                     </path>
                 </svg>
             </div>
-            <!-- <p>ruiz678</p> -->
-            <p>secreta123</p>
+            <p>dQ3"Z6tRy,</p>
 
         </div>
     </div>
@@ -160,24 +158,24 @@
 
 
 
-    <button [disabled]='isLoading' class="button-submit">
+    <button [disabled]='isLoading' [ngClass]= "isLoading ? 'button-submit button-submit--loading' : 'button-submit'">
+        @if(isLoading){
+        Sending data <div class="traffic-loader"></div>
+        }@else{
         @if(register){
         Sign in
         }@else{
         Log In
         }
+        }
     </button>
 
     <p class="p">Don't have an account? <span class="span" (click)='changeForm()'>
-        @if(isLoading){
-            Sending data <div class="traffic-loader"></div>
-        }@else{
             @if(register){
-                Log in
-                }@else{
-                Sign Up
-                }
-        }
+            Log in
+            }@else{
+            Sign Up
+            }
         </span>
 
     </p>

@@ -8,11 +8,37 @@
     align-items: center;
 }
 
-.measures{
+
+
+.measures, .layout__main{
     display: flex;
     flex-direction: column;
     gap: 32px;
     justify-content: space-around;
     align-items: center;
-    border: 2px solid red;
+    width: 70%;
+    border: 2px solid black;
+    border: 2px solid black;
 }
+.measures{
+    width: 100%;
+}
+.layout__aside{
+    border: 2px solid black;
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.measures__charts{
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+}
+
+.multi-area {
+    width: 100%;
+    border: 2px solid black;
+    
+  }

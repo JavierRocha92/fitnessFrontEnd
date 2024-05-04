@@ -1,17 +1,40 @@
 <div class="layout">
     @if(user_on_demand){
+        <!-- LAYOUT MAIN CONTAINER -->
+   <div class="layout__main">
     <section class="measures">
-
-        <app-area [measures]='user_on_demand.historical_measurements' [bg_color] = '"red"' [uds] = '"cm"' [type]='"Weight"'></app-area>
-        <app-area [measures]='user_on_demand.historical_measurements' [bg_color] = '"blue"' [uds] = '"cm"' [type]='"Waist_circumference"'></app-area>
-        <app-area [measures]='user_on_demand.historical_measurements' [bg_color] = '"green"' [uds] = '"cm"' [type]='"Hip_circumference"'></app-area>
+        <div class="measures__charts">
+            <app-area [set_initial_data] = 'true' [name] ='"measures"' [measures]='user_on_demand.historical_measurements' [bg_color] = '"red"' [uds] = '"cm"' [type]='"Weight"'></app-area>
+            <app-area  [name] ='"measures"' [measures]='user_on_demand.historical_measurements' [bg_color] = '"blue"' [uds] = '"cm"' [type]='"Waist_circumference"'></app-area>
+            <app-area  [name] ='"measures"' [measures]='user_on_demand.historical_measurements' [bg_color] = '"green"' [uds] = '"cm"' [type]='"Hip_circumference"'></app-area>
+        </div>
+        <app-multi-area class="multi-area" [name] = '"measures"'></app-multi-area>
+        
     </section>
     <section class="measures">
-
-        <app-area [measures]='user_on_demand.historical_bio_data' [bg_color] = '"red"' [uds] = '"cm"' [type]='"Weight"'></app-area>
-        <app-area [measures]='user_on_demand.historical_bio_data' [bg_color] = '"blue"' [uds] = '"cm"' [type]='"BMI"'></app-area>
-        <app-area [measures]='user_on_demand.historical_bio_data' [bg_color] = '"green"' [uds] = '"cm"' [type]='"Body_fat"'></app-area>
+        <div class="measures__charts">
+            <app-area [set_initial_data] = 'true' [name] ='"calories"' [measures]='user_on_demand.historical_bio_data' [bg_color] = '"red"' [uds] = '"cm"' [type]='"Weight"'></app-area>
+            <app-area  [name] ='"calories"' [measures]='user_on_demand.historical_bio_data' [bg_color] = '"blue"' [uds] = '"cm"' [type]='"BMI"'></app-area>
+            <app-area  [name] ='"calories"' [measures]='user_on_demand.historical_bio_data' [bg_color] = '"green"' [uds] = '"cm"' [type]='"Body_fat"'></app-area>
+        </div>
+        <app-multi-area class="multi-area" [name] = '"calories"'></app-multi-area>
+        
     </section>
+   </div>
+   <!-- ASIDE USER INFO -->
+   <aside class="layout__aside">
+    <button (click) = 'changeVirtualUser()'>Log out</button>
+    <div class="user">
+        <app-user-avatar [id] = '11' [name] = '"pepito"'></app-user-avatar>
+    </div>
+    <div class="radar">
+        <app-radar></app-radar>
+    </div>
+    <div class="comparision">
+        <app-avg-area></app-avg-area>
+    </div>
+   </aside>
+
     }
     <!-- @if(user_on_demand){
     <section class="measures">

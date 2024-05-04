@@ -19,8 +19,17 @@ export interface Virtual_user {
   Physical_User_ID: number
   Name: string
   Email: string
-  Goal: string
+  Goal: number
   Daily_calories: number
+  Target_BMI : number
+  Target_Body_fat : number
+  Target_hip_circumference : number
+  Target_waist_circumference : number
+  Target_weight : number
+  Start_date : Date
+  End_date : Date
+  Activity_level : string
   historical_measurements : Measures,
   historical_bio_data : BioDatas
 }
+

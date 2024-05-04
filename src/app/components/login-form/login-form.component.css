@@ -109,8 +109,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: white;
-    color : black
   }
   
   .button-submit:hover {
@@ -147,7 +145,7 @@
   label{
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
     width: 100%;
 
   }
@@ -168,8 +166,8 @@
   /* LOADER */
 
   .traffic-loader {
-    width: 50px;
-    height: 50px;
+    width: 30px;
+    height: 30px;
     --c: radial-gradient(farthest-side, #fff 92%, #0000);
     background: var(--c) 50% 0, var(--c) 50% 100%, var(--c) 100% 50%,
       var(--c) 0 50%;

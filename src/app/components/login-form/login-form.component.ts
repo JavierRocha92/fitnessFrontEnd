@@ -95,7 +95,7 @@ export class LoginFormComponent implements OnInit {
           resolve(response);
           if (response.success) {
             this.token_service.saveToken(response.token);
-            this.user_service.setUser(response.user, response.virtual_users);
+            this.user_service.setUser(response.user, response.virtual_users, response.avg_data);
             this.isLoading = false;
             this.router.navigate(['/user-avatar']);
           }

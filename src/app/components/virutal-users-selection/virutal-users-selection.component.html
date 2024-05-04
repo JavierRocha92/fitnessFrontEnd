@@ -1,8 +1,9 @@
 <div class="virtual-users">
+    <button (click) = 'logOut()'>Log Out</button>
     @if(virtual_users && virtual_users.length){
        <h1>Estos son tus usuarios virtuales</h1>
     @for(virtual_user of virtual_users; track virtual_user.ID;){
-        <app-user-avatar [id] = 'virtual_user.ID'></app-user-avatar>
+        <app-user-avatar [id] = 'virtual_user.ID' [name] = 'virtual_user.Name'></app-user-avatar>
     }
    }@else{
     <h1>Aun no tienes usuarios virtuales </h1>
