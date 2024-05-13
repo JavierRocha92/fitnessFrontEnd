@@ -5,7 +5,7 @@ export interface User {
     Email: string
     First_name: string
     Gender: string
-    ID: number
+    ID: string
     Last_name: string
     Password: string
     Registration_date: number
@@ -15,7 +15,7 @@ export interface User {
 export type Virtual_users = Virtual_user[]
 
 export interface Virtual_user {
-  ID: number
+  ID: string
   Physical_User_ID: number
   Name: string
   Email: string
