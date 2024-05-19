@@ -62,7 +62,7 @@ export class RadarComponent implements AfterViewInit {
       },
       plotOptions: {
         radar: {
-          size: 120,
+          size: 100,
           polygons: {
             strokeColor: '#e9e9e9',
             fill: {
@@ -110,6 +110,17 @@ export class RadarComponent implements AfterViewInit {
   ngOnInit(): void {
     const virtual_user = this.user_service.getVirtualUserOnOFocus();
     if (virtual_user) this.setSeriesData(virtual_user);
+    this.setCategories(virtual_user)
+  }
+
+  setCategories(virtual_user : any){
+    const type_names = ['Weight', 'Hip_circumference', 'Waist_circumference', 'Weight', 'BMI', 'Body_fat']
+
+    this.chartOptions.xaxis.categories = type_names.map((type : string) => {
+      const prop_name = `Target_${type.toLowerCase()}`
+      return type + ' ' + virtual_user[prop_name]
+    })
+
   }
 
   setSeriesData(virtual_user: Virtual_user): any {

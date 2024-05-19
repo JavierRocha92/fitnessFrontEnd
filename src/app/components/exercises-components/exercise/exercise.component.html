@@ -1,0 +1,101 @@
+<!-- <div class="card">
+    <img src={{exercise.gifUrl}} class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">{{exercise.name}}</h5>
+      <p class="card-text">{{exercise.instructions.slice(0,200)}}</p>
+      <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+  </div> -->
+
+
+  <div class="card-parent recipe d-flex flex-column border p-2 align-items-center justify-content-center">
+    <section class="card__top w-100 d-flex justify-content-center">
+  
+      <div class="card" style="width: 18rem;">
+        <a [title]='exercise.gifUrl' href=''><img src={{exercise.gifUrl}} class="card-img-top" alt="..."></a>
+        <div class="card-body">
+          <h6 [title]='exercise.name'>{{exercise.name}}</h6>
+          <h5 class="card-title w-100 d-flex justify-content-between align-items-center mt-3">
+            <span>{{exercise.bodyPart}}</span> <span class="fs-6 text-secondary"> for {{exercise.target}}
+              servings</span></h5>
+        </div>
+      </div>
+      <!-- digest information comonent -->
+      <div class="card" style="width: 18rem;">
+        <h4 class="w-100 text-center p-1">Information</h4>
+        <table class="table table-striped m-0">
+          <thead>
+            <tr>
+              <th scope="col">Secondary Muscles</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for(muscle of exercise.secondaryMuscles;track muscle){
+  
+            <tr>
+              <td>{{muscle}}</td>
+            </tr>
+            }
+  
+          </tbody>
+        </table>
+        <table class="table table-striped m-0 mt-2 border">
+          <thead>
+            <tr>
+              <th scope="col">Equipment</th>
+            </tr>
+          </thead>
+          <tbody>
+  
+            <tr>
+              <td>{{exercise.equipment}}</td>
+            </tr>
+  
+          </tbody>
+        </table>
+  
+      </div>
+    </section>
+    <section class="card__bottom position-relative w-100">
+      <section [ngClass]="(toggle) ? 'ingredients show' : 'ingredients hide'">
+  
+        <h4 class="w-100 text-center p-1 w-100">Instructions</h4>
+        <table class="table table-striped w-100">
+          <thead>
+            <tr>
+              <th scope="col">Instruction</th>
+            </tr>
+          </thead>
+          <tbody>
+  
+            @for(instruction of exercise.instructions;track instruction){
+  
+            <tr>
+              <td>{{instruction}}</td>
+            </tr>
+            }
+  
+          </tbody>
+        </table>
+  
+      </section>
+  
+      <div class="card-body w-100 d-flex justify-content-around mt-4">
+        <button (click)='toggleIngredientsInfo()' (blur)='onBlur()'>
+          <span class="shadow"></span>
+          <span class="edge"></span>
+          <span class="front text">
+            Show instructions
+          </span>
+        </button>
+       
+        <button type="submit">
+          <span class="shadow"></span>
+          <span class="edge"></span>
+          <span class="front text"> Add to your work out
+          </span>
+        </button>
+      </div>
+    </section>
+  
+  </div>

@@ -1,0 +1,9 @@
+
+<div class="calculator">
+    <div *ngFor="let food of foods;let i = index">
+        <app-food-form [food_index_input] = 'i' (removeFoodFromArray) = 'removeFood(i)'></app-food-form>
+        <app-food-info [food_index_input] = 'i'></app-food-info>
+    </div>
+    <button [disabled] = 'isDisabled' (click) = 'addFood()'>Añadir nuevo alimento</button>
+    <app-float-component [items] = 'totals'></app-float-component>
+</div>

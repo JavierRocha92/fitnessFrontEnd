@@ -1,0 +1,11 @@
+<div class="exercises w-100 p-2">
+    <app-exercise-form></app-exercise-form>
+    <div class="exercises__content">
+
+        @if(exercises){
+            @for(exercise of exercises;track exercise.id){
+                <app-exercise [exercise] = 'exercise'></app-exercise>
+            }
+        }
+    </div>
+</div>

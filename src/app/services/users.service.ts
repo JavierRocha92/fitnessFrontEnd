@@ -1,21 +1,30 @@
 import { Injectable, OnInit } from '@angular/core';
 import { User, Virtual_users, Virtual_user } from '../types/user';
+import { BehaviorSubject, Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
 export class UsersService {
+  new_data : boolean = false
+  subject_new_data : BehaviorSubject<any> = new BehaviorSubject<any>(false)
   user: User | undefined;
   virtual_users: Virtual_users | undefined;
   avg_data: any;
+  observable_response = false
   constructor() {}
 
-  setUser(user: User, virtual_users: Virtual_users, avg_data: any) {
+  setUser(user: User, virtual_users: Virtual_users, avg_data: any): void{
     localStorage.setItem('user', JSON.stringify(user));
     localStorage.setItem('virtual_users', JSON.stringify(virtual_users));
     localStorage.setItem('avg_data', JSON.stringify(avg_data));
     this.user = user;
     this.virtual_users = virtual_users;
     this.avg_data = avg_data;
+    this.updateLocalStorageData()
+  }
+  
+  newLocalStorageDataIsSet() : Observable<boolean>{
+    return this.subject_new_data.asObservable()
   }
 
   getUserData(): User | null | undefined {
@@ -38,19 +47,6 @@ export class UsersService {
     }
   }
 
-  parseVirtualUserData(data: any): Virtual_users {
-    const parsed_data = data?.map((virtual_user: Virtual_user) => {
-      const historical_measurements = JSON.parse(
-        virtual_user.historical_measurements as any
-      );
-      const historical_bio_data = JSON.parse(
-        virtual_user.historical_bio_data as any
-      );
-      return { ...virtual_user, historical_bio_data, historical_measurements };
-    });
-    return parsed_data;
-  }
-
   setVirtualUserOnOFocus(virtual_user: Virtual_user | undefined) {
     localStorage.setItem('virtual_user_on_focus', JSON.stringify(virtual_user));
   }
@@ -67,12 +63,28 @@ export class UsersService {
     return null;
   }
 
+  updateVirtualUserData(virtual_user : Virtual_user){
+    let virtual_users = this.getVirtualUserData()
+    if(virtual_users){
+      virtual_users = virtual_users.filter((virtual_user_old : Virtual_user) => virtual_user_old.ID !== virtual_user.ID)
+      virtual_users.push(virtual_user)
+      localStorage.setItem('virtual_users', JSON.stringify(virtual_users))
+      this.updateLocalStorageData()
+    }
+  }
+
   logOut(){
     localStorage.removeItem('user')
     localStorage.removeItem('virtual_users')
     localStorage.removeItem('avg_data')
     localStorage.removeItem('virtual_user_on_focus')
     localStorage.removeItem('user_token')
+  }
+
+  updateLocalStorageData(){
+    this.new_data = !this.new_data
+    this.subject_new_data.next(this.new_data)
+    this.newLocalStorageDataIsSet()
   }
   
 }

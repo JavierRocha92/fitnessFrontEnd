@@ -33,3 +33,25 @@ export interface Virtual_user {
   historical_bio_data : BioDatas
 }
 
+interface RegisterVirtualData {
+  physical_user_id: string;
+  name: string;
+  goal: boolean;
+  daily_calories: number;
+  target_weight: number;
+  target_hip_circumference: number;
+  target_waist_circumference: number;
+  target_bmi: number;
+  target_body_fat: number;
+  age: string;
+  end_date: string;
+  activity_level: string;
+  weight: number;
+  hip_circumference: number;
+  waist_circumference: number;
+  bmi: number;
+  body_fat: number;
+  height: number;
+  gender: string;
+}
+

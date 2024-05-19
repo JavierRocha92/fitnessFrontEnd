@@ -1,0 +1,9 @@
+.modal-content{
+    width: 900px !important;
+    margin: 0 auto !important;
+}
+.modal-body, .register-form{
+    width: 100%;
+    border: 2px solid black;
+    padding: 5px;
+}

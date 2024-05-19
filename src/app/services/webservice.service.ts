@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { TokenService } from './token.service';
 @Injectable({
   providedIn: 'root',
@@ -25,10 +25,16 @@ export class WebserviceService {
     let headers = {}
     if(this.isTokenRequired(route)){
       const token = this.token_service.getToken()
+      console.log('este es el token')
+      console.log(token)
       headers = new HttpHeaders({
-        Authorization: (token) ? token : '',
+        'Authorization': token ? `Bearer ${token}` : '',
+        // 'Authorization': `Bearer ${token}`,
       });
     }
+
+    console.log('headers')
+    console.log(headers)
     
     /* Realizamos la peticion post */
     this.http.post<any>(url_request, params, {headers : headers}).subscribe(
@@ -44,6 +50,42 @@ export class WebserviceService {
       }
     )
   }
+
+  delete(
+    route: string,
+    ids: (string | null | undefined) [],
+    callBack: Function = (response: any) => {
+      console.log(response);
+    },
+    callError: Function = (error: any) => console.log(error)
+  ) {
+  
+    /* Construimos la url de la peticion */
+    let url_request = this.server_url + route + `/${ids[0]}/${ids[1]}`;
+
+    /* Contruimos los encabezados de la peticion HTTP si precisamos de autorizacion para la peticion*/
+    let headers = {}
+    if(this.isTokenRequired(route)){
+      const token = this.token_service.getToken()
+      headers = new HttpHeaders({
+        'Authorization': token ? `Bearer ${token}` : '',
+      });
+    }
+
+    
+    
+    
+    /* Realizamos la peticion delete */
+    this.http.delete<any>(url_request, { headers: headers}).subscribe(
+      (response) => {
+        callBack(response)
+      },
+      (error) => {
+        callError(error)
+      }
+    )
+  }
+
 
   isTokenRequired(route : string) : boolean{
     return !this.public_routes.includes(route)

@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
 import {
   FormBuilder,
   FormGroup,
@@ -75,9 +76,6 @@ export class LoginFormComponent implements OnInit {
         email: this.emailControl.value,
         pass: this.passControl.value,
       };
-      console.log('form_data')
-      console.log(form_data)
-
 
       this.sendData(form_data);
     }
@@ -103,7 +101,7 @@ export class LoginFormComponent implements OnInit {
 
         (error: any) => {
           reject(error);
-          console.log('el login no ha ido bien');
+          console.log('respuesta de error en el server');
           this.isLoading = false;
         }
       );

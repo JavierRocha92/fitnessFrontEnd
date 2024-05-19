@@ -23,9 +23,12 @@
    </div>
    <!-- ASIDE USER INFO -->
    <aside class="layout__aside">
-    <button (click) = 'changeVirtualUser()'>Log out</button>
+    <div class="layout__buttons">
+        <app-modal [button_text] = '"Add new measures +"' [form_to_show] = '"measures"'></app-modal>
+        <button (click) = 'changeVirtualUser()'>Log out</button>
+    </div>
     <div class="user">
-        <app-user-avatar [id] = '11' [name] = '"pepito"'></app-user-avatar>
+        <app-user-avatar [id] = 'user_on_demand.ID' [name] = 'user_on_demand.Name'></app-user-avatar>
     </div>
     <div class="radar">
         <app-radar></app-radar>
