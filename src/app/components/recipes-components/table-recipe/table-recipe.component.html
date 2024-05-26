@@ -1,0 +1,5 @@
+<div  class="w-100 d-flex">
+    <!-- <img [title] = 'recipe.name' class="image" src={{recipe.image}} alt=""> -->
+    <p [title] = 'recipe.name' class="name">{{recipe.name.slice(0,10)}}...</p>
+    <button (click) = 'removeItem()' class="btn bg-danger text-light">X</button>
+</div>

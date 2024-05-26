@@ -3,3 +3,8 @@
     grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
     gap: 16px; 
 }
+
+:host{
+    width: 100%;
+
+}

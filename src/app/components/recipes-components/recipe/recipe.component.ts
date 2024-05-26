@@ -1,24 +1,26 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { daily } from '../../../types/recipes';
+import { MealPlannerTableComponent } from '../meal-planner-table/meal-planner-table.component';
+import { RecipesService } from '../../../services/recipes.service';
 @Component({
   selector: 'app-recipe',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, MealPlannerTableComponent],
   templateUrl: './recipe.component.html',
   styleUrl: './recipe.component.css'
 })
 export class RecipeComponent implements OnInit {
   digest_names: string[] = ['Fat', 'Carbs', 'Protein', 'Cholesterol', 'Vitamin A', 'Vitamin C', 'Vitamin B12', 'Vitamin D', 'Energy']
-
   @Input() recipe_data: any
   recipe: any
   links: any
   id!: string
   processed_digests : any = []
   toggle : boolean = false
+  toggle_planner : boolean = false
 
-  constructor() { }
+  constructor(private recipes_service : RecipesService) { }
 
   ngOnInit(): void {
     this.recipe = this.recipe_data.recipe
@@ -56,9 +58,17 @@ export class RecipeComponent implements OnInit {
   toggleIngredientsInfo(){
     this.toggle = !this.toggle
   }
-
+  
   onBlur(){
     this.toggle = false
   }
+  
+  setRecipeOnChange(){
+    this.recipes_service.setRecipeOnChange(this.recipe)
+
+  }
+
+  
+
 
 }

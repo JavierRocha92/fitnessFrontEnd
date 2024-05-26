@@ -1,20 +1,38 @@
 <div class="recipes w-100">
-    <app-recipe-form (errorSearch)="toggleError(true)"></app-recipe-form>
-    @if(error){
-    <h3 class="error">Lo sentimo pero ha ocurrido un error, intentelo de nuevo</h3>
-    }@else {
- 
-    @if(current_recipes){
-       <div class="buttons w-100 d-flex justify-content-between m-5">
-          <button [disabled]="!previous" (click)='searchRecipe(previous!.href)'>Previous page</button>
-          <button [disabled]="!next" (click)='searchRecipe(next!.href)'>Next page</button>
-       </div>
-    <div class="recipes__container w-100">
-       @for(recipe of current_recipes; track recipe){
-       <app-recipe [recipe_data]='recipe'></app-recipe>
- 
-       }
-    </div>
-    }
-    }
- </div>
+   <app-recipe-form (errorSearch)="toggleError(true)"></app-recipe-form>
+   @if(error){
+   <h3 class="error">Lo sentimo pero ha ocurrido un error, intentelo de nuevo</h3>
+   }@else {
+
+   @if(current_recipes){
+      <div class="buttons w-100 d-flex justify-content-between p-3">
+         <button [disabled]="!previous" (click)='searchRecipe(previous!.href)'>Previous page</button>
+         <button [disabled]="!next" (click)='searchRecipe(next!.href)'>Next page</button>
+      </div>
+   <div class="recipes__container w-100">
+      @for(recipe of current_recipes; track recipe){
+      <app-recipe [recipe_data]='recipe'></app-recipe>
+
+      }
+   </div>
+   }
+   }
+         <!-- Modal -->
+         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="close-button-modal"></button>
+                </div>
+                <div class="modal-body">
+                  <app-meal-planner-table></app-meal-planner-table>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn bg-secondary btn-secondary p-3" data-bs-dismiss="modal">Close</button>
+                  <button (click) = 'onSaveMealPlanner()' type="button" class="btn bg-primary btn-primary p-3">Save changes</button>
+                </div>
+              </div>
+            </div>
+          </div>
+</div>

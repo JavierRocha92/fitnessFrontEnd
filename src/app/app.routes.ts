@@ -6,6 +6,7 @@ import { CalculatorComponent } from './components/calculator/calculator.componen
 import { ExercisesComponent } from './components/exercises-components/exercises/exercises.component';
 import { RecipesComponent } from './components/recipes-components/recipes/recipes.component';
 import { MeasuresComponent } from './components/componnetes-para-borrrar/measures/measures.component';
+import { ToasterComponent } from './components/toaster/toaster.component';
 
 export const routes: Routes = [
     {
@@ -35,5 +36,9 @@ export const routes: Routes = [
     {
         path : 'measures',
         component : MeasuresComponent
+    },
+    {
+        path : '44',
+        component : ToasterComponent
     }
 ];

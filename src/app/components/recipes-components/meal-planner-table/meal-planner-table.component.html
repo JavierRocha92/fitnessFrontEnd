@@ -1,0 +1,76 @@
+<div class="meal-planner">
+    <table class="table w-100">
+      <thead>
+        <tr>
+          <th scope="col">DAy</th>
+          <th scope="col">Breakfast</th>
+          <th scope="col">Snack</th>
+          <th scope="col">Lunch</th>
+          <th scope="col">Tea Time</th>
+          <th scope="col">Dinner</th>
+          <th scope="col">KCal</th>
+  
+        </tr>
+      </thead>
+      <tbody>
+        @for(day of meal_planner; track day.day){
+        <tr>
+          <td><strong>{{ day.day }}</strong></td>
+  
+          <td>
+            @if(isEmpty(day.meals.breakfast)){
+            <button class="bg-success text-light" (click)='addDietToPlanner("breakfast", day.day)'> Add new recipe</button>
+            }@else {
+            <app-table-recipe [recipe_type] = '"breakfast"' [meal_planner_day] = 'day.day' [recipe]='day.meals.breakfast'></app-table-recipe>
+            }
+          </td>
+          <td>
+            @if(isEmpty(day.meals.snack)){
+            <button class="bg-success text-light" (click)='addDietToPlanner("snack", day.day)'> Add new recipe</button>
+            }@else {
+            <app-table-recipe [recipe_type] = '"snack"' [meal_planner_day] = 'day.day' [recipe]='day.meals.snack'></app-table-recipe>
+            }
+          </td>
+          <td>
+            @if(isEmpty(day.meals.lunch)){
+            <button class="bg-success text-light" (click)='addDietToPlanner("lunch", day.day)'> Add new recipe</button>
+            }@else {
+            <app-table-recipe [recipe_type] = '"lunch"' [meal_planner_day] = 'day.day' [recipe]='day.meals.lunch'></app-table-recipe>
+            }
+          </td>
+          <td>
+            @if(isEmpty(day.meals.tea_time)){
+            <button class="bg-success text-light" (click)='addDietToPlanner("tea_time", day.day)'> Add new recipe</button>
+            }@else {
+            <app-table-recipe [recipe_type] = '"tea_time"' [meal_planner_day] = 'day.day' [recipe]='day.meals.tea_time'></app-table-recipe>
+            }
+          </td>
+          <td>
+            @if(isEmpty(day.meals.dinner)){
+            <button class="bg-success text-light" (click)='addDietToPlanner("dinner", day.day)'> Add new recipe</button>
+            }@else {
+            <app-table-recipe [recipe_type] = '"dinner"' [meal_planner_day] = 'day.day' [recipe]='day.meals.dinner'></app-table-recipe>
+            }
+          </td>
+          <td>
+            {{day.calories}}
+          </td>
+  <!--         
+          <td> <button [ngClass]="(isEmpty(day.meals.snack)) ? 'bg-success text-light' : 'bg-secondary'"
+              (click)='addDietToPlanner("snack", day.day)'>{{ isEmpty(day.meals.snack) ? 'Add new recipe' :
+              day.meals.snack }} </button> </td>
+          <td> <button [ngClass]="(isEmpty(day.meals.lunch)) ? 'bg-success text-light' : 'bg-secondary'"
+              (click)='addDietToPlanner("lunch", day.day)'>{{ isEmpty(day.meals.lunch) ? 'Add new recipe' :
+              day.meals.lunch }} </button> </td>
+          <td> <button [ngClass]="(isEmpty(day.meals.tea_time)) ? 'bg-success text-light' : 'bg-secondary'"
+              (click)='addDietToPlanner("tea_time", day.day)'>{{ isEmpty(day.meals.tea_time) ? 'Add new recipe' :
+              day.meals.tea_time }} </button> </td>
+          <td> <button [ngClass]="(isEmpty(day.meals.dinner)) ? 'bg-success text-light' : 'bg-secondary'"
+              (click)='addDietToPlanner("dinner", day.day)'>{{ isEmpty(day.meals.dinner) ? 'Add new recipe' :
+              day.meals.dinner }} </button> </td> -->
+        </tr>
+        }
+      </tbody>
+    </table>
+  
+  </div>

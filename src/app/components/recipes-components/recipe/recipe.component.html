@@ -1,90 +1,101 @@
 <div class="card-parent recipe d-flex flex-column border p-2 align-items-center justify-content-center">
-    <section class="card__top w-100 d-flex justify-content-center">
-  
-      <div class="card" style="width: 18rem;">
-        <a [title]='recipe.uri' href=''><img src={{recipe.image}} class="card-img-top" alt="..."></a>
-        <div class="card-body">
-          <h6 [title]='recipe.label'>{{recipe.label.slice(0,60)}}...</h6>
-          <h5 class="card-title w-100 d-flex justify-content-between align-items-center mt-3">
-            <span>{{recipe.calories.toFixed(2)}} Kcal</span> <span class="fs-6 text-secondary">For {{recipe.yield}}
-              servings</span></h5>
-        </div>
+  <section class="card__top w-100 d-flex justify-content-center">
+
+    <div class="card" style="width: 18rem;">
+      <a [title]='recipe.uri' href=''><img src={{recipe.image}} class="card-img-top" alt="..."></a>
+      <div class="card-body">
+        <h6 [title]='recipe.label'>{{recipe.label.slice(0,60)}}...</h6>
+        <h5 class="card-title w-100 d-flex justify-content-between align-items-center mt-3">
+          <span>{{recipe.calories.toFixed(2)}} Kcal</span> <span class="fs-6 text-secondary">For {{recipe.yield}}
+            servings</span>
+        </h5>
       </div>
-      <!-- digest information comonent -->
-      <div class="card" style="width: 18rem;">
-        <h4 class="w-100 text-center p-1">Digests per serving</h4>
-        <table class="table table-striped m-0">
-          <thead>
-            <tr>
-              <th scope="col">Name</th>
-              <th scope="col">Weight</th>
-              <th scope="col">Daily</th>
-            </tr>
-          </thead>
-          <tbody>
-            @for(digest of processed_digests;track digest){
-  
-            <tr>
-              <td>{{digest.label}}</td>
-              <td>{{digest.total}}</td>
-              <td>{{digest.daily}}</td>
-            </tr>
-            }
-  
-          </tbody>
-        </table>
-  
-      </div>
+    </div>
+    <!-- digest information comonent -->
+    <div class="card" style="width: 18rem;">
+      <h4 class="w-100 text-center p-1">Digests per serving</h4>
+      <table class="table table-striped m-0">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Weight</th>
+            <th scope="col">Daily</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for(digest of processed_digests;track digest){
+
+          <tr>
+            <td>{{digest.label}}</td>
+            <td>{{digest.total}}</td>
+            <td>{{digest.daily}}</td>
+          </tr>
+          }
+
+        </tbody>
+      </table>
+
+    </div>
+  </section>
+  <section class="card__bottom position-relative w-100">
+    <section [ngClass]="(toggle) ? 'ingredients show' : 'ingredients hide'">
+
+      <h4 class="w-100 text-center p-1 w-100">Digests per serving</h4>
+      <table class="table table-striped w-100">
+        <thead>
+          <tr>
+            <th scope="col">Measure</th>
+            <th scope="col">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          @for(ingredient of recipe.ingredients;track ingredient){
+
+          <tr>
+            <td>{{ingredient.quantity.toFixed(2)}} {{ingredient.measure}}</td>
+            <td [title]="ingredient.text">{{ingredient.text.slice(0,60)}}...</td>
+          </tr>
+          }
+
+        </tbody>
+      </table>
+
     </section>
-    <section class="card__bottom position-relative w-100">
-      <section [ngClass]="(toggle) ? 'ingredients show' : 'ingredients hide'">
-  
-        <h4 class="w-100 text-center p-1 w-100">Digests per serving</h4>
-        <table class="table table-striped w-100">
-          <thead>
-            <tr>
-              <th scope="col">Measure</th>
-              <th scope="col">Description</th>
-            </tr>
-          </thead>
-          <tbody>
-  
-            @for(ingredient of recipe.ingredients;track ingredient){
-  
-            <tr>
-              <td>{{ingredient.quantity.toFixed(2)}} {{ingredient.measure}}</td>
-              <td [title]="ingredient.text">{{ingredient.text.slice(0,60)}}...</td>
-            </tr>
-            }
-  
-          </tbody>
-        </table>
-  
-      </section>
-  
-      <div class="card-body w-100 d-flex justify-content-around mt-4">
-        <button (click)='toggleIngredientsInfo()' (blur)='onBlur()'>
-          <span class="shadow"></span>
-          <span class="edge"></span>
-          <span class="front text">
-            Show ingredients
-          </span>
-        </button>
-        <button>
-          <span class="shadow"></span>
-          <span class="edge"></span>
-          <span class="front text">
-  
-            <a href={{recipe.url}} target="_blank" class="card-link text-decoration-none text-light">Go to the recipe</a>
-          </span>
-        </button>
-        <button type="submit">
-          <span class="shadow"></span>
-          <span class="edge"></span>
-          <span class="front text"> Add to your diet
-          </span>
-        </button>
-      </div>
-    </section>
-  
-  </div>
+
+    <div class="card-body w-100 d-flex justify-content-around mt-4">
+      <button (click)='toggleIngredientsInfo()' (blur)='onBlur()'>
+        <span class="shadow"></span>
+        <span class="edge"></span>
+        <span class="front text">
+          Show ingredients
+        </span>
+      </button>
+      <button>
+        <span class="shadow"></span>
+        <span class="edge"></span>
+        <span class="front text">
+
+          <a href={{recipe.url}} target="_blank" class="card-link text-decoration-none text-light">Go to the recipe</a>
+        </span>
+      </button>
+
+      <!-- Button trigger modal -->
+
+      <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" (click) = 'setRecipeOnChange()'>
+        <span class="shadow"></span>
+        <span class="edge"></span>
+        <span class="front text"> Add to your diet
+        </span>
+      </button>
+
+
+
+    </div>
+  </section>
+
+  @if(toggle_planner){
+  <app-meal-planner-table></app-meal-planner-table>
+  }
+
+</div>
