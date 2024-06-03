@@ -18,6 +18,7 @@ export class VirutalUsersSelectionComponent implements OnInit {
   constructor(private user_service: UsersService, private router : Router) {}
 
   ngOnInit(): void {
+    this.user_service.checkSession()
     this.user_service.newLocalStorageDataIsSet().subscribe((data : any) => {
       this.virtual_users = this.user_service.getVirtualUserData();
     })

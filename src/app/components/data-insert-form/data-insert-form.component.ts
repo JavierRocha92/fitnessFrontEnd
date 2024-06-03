@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { ToastrService } from 'ngx-toastr';
 import {
   FormBuilder,
   FormGroup,
@@ -51,7 +51,9 @@ export class DataInsertFormComponent implements OnInit {
     private router: Router,
     private web_service: WebserviceService,
     private token_service: TokenService,
-    private user_service: UsersService
+    private user_service: UsersService,
+    private toastr : ToastrService
+    
   ) {}
 
   ngOnInit(): void {
@@ -93,7 +95,6 @@ export class DataInsertFormComponent implements OnInit {
 
   sendData(form_data: RegisterData) {
     this.isLoading = true;
-    console.log(`estoy cargando ${this.isLoading}`)
     const post_route = this.register ? 'register/' : 'login/';
     return new Promise(async (resolve, reject) => {
       this.web_service.post(
@@ -106,12 +107,15 @@ export class DataInsertFormComponent implements OnInit {
             this.user_service.setUser(response.user, response.virtual_users, response.avg_data);
             this.isLoading = false;
             this.router.navigate(['/user-avatar']);
+            this.toastr.success('Login successfully')
+          }
+          else{
+            this.toastr.info('Data invlaid')
           }
         },
-
+        
         (error: any) => {
           reject(error);
-          console.log('respuesta de error del server');
           this.isLoading = false;
         }
       );

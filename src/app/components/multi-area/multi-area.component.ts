@@ -1,4 +1,10 @@
-import { Component, ViewChild, Input, OnInit, AfterViewInit } from '@angular/core';
+import {
+  Component,
+  ViewChild,
+  Input,
+  OnInit,
+  AfterViewInit,
+} from '@angular/core';
 export type ChartOptions = {
   series: ApexAxisChartSeries;
   chart: ApexChart;
@@ -19,39 +25,59 @@ import {
   NgApexchartsModule,
 } from 'ng-apexcharts';
 import { ChartSeriesServiceService } from '../../services/chart-series-service.service';
+import { ModalComponent } from '../modal/modal.component';
+import { UsersService } from '../../services/users.service';
 
 @Component({
   selector: 'app-multi-area',
   standalone: true,
-  imports: [NgApexchartsModule],
+  imports: [NgApexchartsModule, ModalComponent],
   templateUrl: './multi-area.component.html',
   styleUrl: './multi-area.component.css',
 })
 export class MultiAreaComponent implements OnInit, AfterViewInit {
+  user_on_demand: any;
   series: any[] = [];
   @Input() name!: string;
   @Input() initial_series!: any;
   @ViewChild('chart') chart: ChartComponent | any;
   public chartOptions: Partial<ChartOptions> | any;
 
-  constructor(private chart_service: ChartSeriesServiceService) {
+  constructor(
+    private chart_service: ChartSeriesServiceService,
+    private user_service: UsersService
+  ) {
     this.chartOptions = {
-
       series: [],
       chart: {
-        // height: 350,
         width: '100%',
         type: 'area',
       },
+      legend: {
+        labels: {
+          colors: 'white',
+        },
+      },
+
       dataLabels: {
-        enabled: false,
+        style: {
+          colors: ['green'], // Color de las etiquetas de datos
+        },
       },
       stroke: {
         curve: 'smooth',
       },
+
       xaxis: {
         type: 'datetime',
         categories: [],
+        labels: {
+          style: {
+            colors: 'white',
+            fontSize: '14px',
+            fontWeight: 400,
+          },
+        },
       },
       tooltip: {
         x: {
@@ -59,17 +85,16 @@ export class MultiAreaComponent implements OnInit, AfterViewInit {
         },
       },
     };
-
   }
-  
- ngAfterViewInit(): void {
-     
- }
-  
+
+  ngAfterViewInit(): void {}
+
   ngOnInit(): void {
+    this.user_on_demand = this.user_service.getVirtualUserOnOFocus();
+
     this.chart_service.getSeries().subscribe((data: any) => {
       this.series = data.filter((item: any) => item.name === this.name);
-      this.chartOptions.series = this.setSeriesData()
+      this.chartOptions.series = this.setSeriesData();
       this.chartOptions.xaxis.categories = this.setDatesData();
     });
   }
@@ -80,8 +105,7 @@ export class MultiAreaComponent implements OnInit, AfterViewInit {
     });
   }
 
-  public setDatesData(){
-    if(this.series.length)
-      return this.series[0].dates
+  public setDatesData() {
+    if (this.series.length) return this.series[0].dates;
   }
 }

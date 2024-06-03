@@ -2,10 +2,9 @@ import { Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { LayoutComponent } from './components/layout/layout.component';
 import { VirutalUsersSelectionComponent } from './components/virutal-users-selection/virutal-users-selection.component';
-import { CalculatorComponent } from './components/calculator/calculator.component';
+import { CalculatorComponent } from './components/calculator-components/calculator/calculator.component';
 import { ExercisesComponent } from './components/exercises-components/exercises/exercises.component';
 import { RecipesComponent } from './components/recipes-components/recipes/recipes.component';
-import { MeasuresComponent } from './components/componnetes-para-borrrar/measures/measures.component';
 import { ToasterComponent } from './components/toaster/toaster.component';
 
 export const routes: Routes = [
@@ -33,10 +32,7 @@ export const routes: Routes = [
         path : 'recipes',
         component : RecipesComponent
     },
-    {
-        path : 'measures',
-        component : MeasuresComponent
-    },
+   
     {
         path : '44',
         component : ToasterComponent

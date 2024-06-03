@@ -1,11 +1,13 @@
 <div class="exercises w-100 p-2">
     <app-exercise-form></app-exercise-form>
+    @if(isLoading){
+        <app-loader></app-loader>
+      }@else{
     <div class="exercises__content">
-
-        @if(exercises){
-            @for(exercise of exercises;track exercise.id){
+            @for(exercise of exercises;track exercise){
                 <app-exercise [exercise] = 'exercise'></app-exercise>
             }
-        }
+        
     </div>
+}
 </div>

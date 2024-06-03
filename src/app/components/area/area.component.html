@@ -1,16 +1,26 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div id="chart" (click) = 'handleChartClick($event)'>
-    <apx-chart class="chart-component"
-      [series]="chartOptions.series"
-      [chart]="chartOptions.chart"
-      [xaxis]="chartOptions.xaxis"
-      [yaxis]="chartOptions.yaxis"
-      [stroke]="chartOptions.stroke"
-      [tooltip]="chartOptions.tooltip"
-      [grid]="chartOptions.grid"
-      [dataLabels]="chartOptions.dataLabels"
-      [title] = "chartOptions.title"
-      [colors] = "chartOptions.colors"
-    ></apx-chart>
+
+<div class="card">
+  <h2>{{type.slice(0,type.indexOf('_'))}}</h2>
+  <!-- <div class="pulse"></div> -->
+  <div id="chart" class="chart-area d-flex align-items-center" (click) = 'handleChartClick($event)'>
+    <img class="card__image w-50" [src]="image_path" alt="">
+
+  <p class="card__info fs-3 w-50">{{last_value}}</p>
+      <apx-chart class="grid d-none"
+        [series]="chartOptions.series"
+        [chart]="chartOptions.chart"
+        [xaxis]="chartOptions.xaxis"
+        [yaxis]="chartOptions.yaxis"
+        [stroke]="chartOptions.stroke"
+        [tooltip]="chartOptions.tooltip"
+        [grid]="chartOptions.grid"
+        [dataLabels]="chartOptions.dataLabels"
+        [title] = "chartOptions.title"
+        [plotOptions] = "chartOptions.plotOptions"
+        [fill] = "chartOptions.fill"
+        
+      ></apx-chart>
+    </div>
   </div>
   

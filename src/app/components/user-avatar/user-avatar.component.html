@@ -1,5 +1,11 @@
 <div class="avatar avatar--lg" >
   <img (click)='goToProfile()' class="avatar__image" src='https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg' alt="">
   <h3 class="avatar__name">{{name}}</h3>
-  <button (click) = 'deleteVirtualUser()' class="bg-danger text-light text-center">Delete</button>
+  
+  <button type="submit" (click) = 'deleteVirtualUser()' [ngClass]="{'': isButton, 'd-none': !isButton}">
+    <span class="shadow"></span>
+    <span class="edge"></span>
+    <span class="front text"> Delete <i class="ms-2 fa-solid fa-trash"></i>
+    </span>
+ </button>
 </div>

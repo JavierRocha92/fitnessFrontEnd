@@ -11,6 +11,7 @@ import {
   ApexStroke,
 } from 'ng-apexcharts';
 import { UsersService } from '../../services/users.service';
+import { ModalComponent } from '../modal/modal.component';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -24,7 +25,7 @@ export type ChartOptions = {
 @Component({
   selector: 'app-avg-area',
   standalone: true,
-  imports: [NgApexchartsModule],
+  imports: [NgApexchartsModule, ModalComponent],
   templateUrl: './avg-area.component.html',
   styleUrl: './avg-area.component.css',
 })
@@ -34,12 +35,16 @@ export class AvgAreaComponent implements OnInit {
   user_xaxis_value : any
   user_yaxis_value : any
   avg_data : any
+  user_on_demand : any
   constructor(private user_service: UsersService) {
     this.chartOptions = {
       series: [],
       chart: {
-        height: 350,
+        height: 280,
         type: 'area',
+        toolbar: {
+          show: false,
+        },
       },
       dataLabels: {
         enabled: false,
@@ -48,13 +53,14 @@ export class AvgAreaComponent implements OnInit {
         curve: 'smooth',
       },
       xaxis: {
-        categories: [],
+        categories : [],
+        show: false 
       },
-      tooltip: {
-        x: {
-          format: 'dd/MM/yy HH:mm',
-        },
+      yaxis: {
+        show: false 
       },
+      
+      
       annotations: {
         points: [
           {
@@ -62,11 +68,13 @@ export class AvgAreaComponent implements OnInit {
             y: '',
             marker: {
               size: 6,
-            },
-            label: {
               borderColor: '#FF4560',
-              text: 'Your weight',
+              colors : '#FF4560'
             },
+            labels : {
+              text : 'you'
+            }
+            
           },
         ],
       },
@@ -74,6 +82,8 @@ export class AvgAreaComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.user_on_demand = this.user_service.getVirtualUserOnOFocus()
 
     this.avg_data = this.user_service.getAvgData();
 
@@ -100,15 +110,15 @@ export class AvgAreaComponent implements OnInit {
   setUserOnDemandChartData(processed_data : any){
     const user_on_demand = this.user_service.getVirtualUserOnOFocus()
     const user_weight = Math.floor(user_on_demand!.historical_measurements[user_on_demand!.historical_measurements.length - 1 ].Weight)
-
+   
     const index_group = processed_data.labels.findIndex((label : string) => this.isInRange(label, user_weight))
 
-    this.user_yaxis_value = processed_data.series_data[index_group -1]
-    this.user_xaxis_value = processed_data.labels[index_group -1]
+    this.user_yaxis_value = processed_data.series_data[index_group]
+    this.user_xaxis_value = processed_data.labels[index_group]
 
     this.chartOptions.annotations.points[0].x = this.user_xaxis_value
     this.chartOptions.annotations.points[0].y = this.user_yaxis_value
-
+    
   }
 
   

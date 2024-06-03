@@ -16,6 +16,9 @@ export class FloatComponentComponent implements OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     if(changes['items'])
       this.items_array = Object.entries(this.items)
+    
+  
   }
+
 
 }

@@ -4,7 +4,7 @@ import { RouterLink, Router } from '@angular/router';
 //Estos archivos se importan solo para el control del formulario
 import { Component, OnInit,  Input, EventEmitter, Output } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { FoodsService } from '../../services/foods.service';
+import { FoodsService } from '../../../services/foods.service';
 import { FoodInfoComponent } from '../food-info/food-info.component';
 import { CommonModule } from '@angular/common';
 @Component({

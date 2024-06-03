@@ -1,18 +1,22 @@
-<form [formGroup]='formulario' (ngSubmit)='hanlderForm()'>
+<form [formGroup]='formulario' class="mt-4" (ngSubmit)='handlerForm()'>
     <div class="mb-3 row">
 
-        <select [formControl] = 'body_partControl'>
-            <option value="back">back</option>
-            <option value="cardio">cardio</option>
-            <option value="chest">chest</option>
-            <option value="lower%20arms">lower arms</option>
-            <option value="lower%20legs">lower legs</option>
-            <option value="neck">neck</option>
-            <option value="shoulders">shoulders</option>
-            <option value="upper%20arms">upper arms</option>
-            <option value="upper%20legs">upper legs</option>
-        </select>
         
+        <div class="formField offset-3 col-6">
+            <select [formControl] = 'body_partControl'>
+                <option value="back">back</option>
+                <option value="cardio">cardio</option>
+                <option value="chest">chest</option>
+                <option value="lower%20arms">lower arms</option>
+                <option value="lower%20legs">lower legs</option>
+                <option value="neck">neck</option>
+                <option value="shoulders">shoulders</option>
+                <option value="upper%20arms">upper arms</option>
+                <option value="upper%20legs">upper legs</option>
+            </select>
+            
+            <span>Type a exercise</span>
+          </div>
 
 
     </div>

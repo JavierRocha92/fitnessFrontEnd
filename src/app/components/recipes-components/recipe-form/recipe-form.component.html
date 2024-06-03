@@ -1,45 +1,45 @@
-<form [formGroup]='formulario' (ngSubmit)='sendData()' class="w-100 form d-flex flex-column align-items-center">
+<form [formGroup]='formulario' (ngSubmit)='sendData()' class="w-100 form d-flex flex-column align-items-center mt-4">
     <div class="mb-3 row w-100 p-3 border">
-        <div class="row col-3">
-            <label [htmlFor]="'exampleInputFood' + food_index_input" class="form-label col-3">Introduce un
-                alimento</label>
-            <input type="text" class="form-control col-9" [id]="'exampleInputFood' + food_index_input"
-                [formControl]='foodControl' aria-describedby="emailHelp">
-        </div>
-        <div class="row col-3">
-            <select [formControl]='dietControl'>
-                <option disabled selected>Select a type</option>
-                <option value="balanced">balanced</option>
-                <option value="high-fiber">high-fiber</option>
-                <option value="high-protein">high-protein</option>
-                <option value="low-carb">low-carb</option>
-                <option value="low-fat">low-fat</option>
-                <option value="low-sodium">low-sodium</option>
-            </select>
-        </div>
-        <div class="row col-3">
-            <select [formControl]='mealControl'>
-                <option disabled selected>Select a type</option>
-                <option value="Breakfast">Breakfast</option>
-                <option value="Dinner">Dinner</option>
-                <option value="Lunch">Lunch</option>
-                <option value="Snack">Snack</option>
-                <option value="Teatime">low-fat</option>
-            </select>
-        </div>
-        <div class="col-3">
-            <label [htmlFor]="'exampleInputCalories' + food_index_input" class="form-label col-3">Introduce un
-                cantidad</label>
-            <input type="number" class="form-control col-9" [id]="'exampleInputCalories' + food_index_input"
+        <div class="row p-2">
+                
+                <div class="formField col-3">
+                    <input type="text" class="form-control col-9" [id]="'exampleInputFood' + food_index_input"
+                        [formControl]='foodControl' aria-describedby="emailHelp">
+                    <span>Type a food</span>
+                  </div>
+                <div class="formField col-3">
+                    <select [formControl]='dietControl'>
+                        <option disabled selected>Select a type</option>
+                        <option value="balanced">balanced</option>
+                        <option value="high-fiber">high-fiber</option>
+                        <option value="high-protein">high-protein</option>
+                        <option value="low-carb">low-carb</option>
+                        <option value="low-fat">low-fat</option>
+                        <option value="low-sodium">low-sodium</option>
+                    </select>
+                    <span>Select a type</span>
+                  </div>
+                <div class="formField col-3">
+                    <select [formControl]='mealControl'>
+                        <option disabled selected>Select a type</option>
+                        <option value="Breakfast">Breakfast</option>
+                        <option value="Dinner">Dinner</option>
+                        <option value="Lunch">Lunch</option>
+                        <option value="Snack">Snack</option>
+                        <option value="Teatime">low-fat</option>
+                    </select>
+                    <span>Select a type</span>
+                  </div>
+                <div class="formField col-3">
+                    <input type="number" class="form-control col-9" [id]="'exampleInputCalories' + food_index_input"
                 [formControl]='caloriesControl' aria-describedby="emailHelp">
-
+                    <span>Type calories</span>
+                  </div>
+                  
         </div>
-
-
 
     </div>
     <div class="buttons d-flex justify-content-around w-100">
-
 
         <button type="submit">
             <span class="shadow"></span>
@@ -47,12 +47,7 @@
             <span class="front text"> Buscar
             </span>
         </button>
-        <!-- <button (click)='emitEvent()'>
-            <span class="shadow"></span>
-            <span class="edge"></span>
-            <span class="front text"> Eliminar alimento
-            </span>
-        </button> -->
+      
 
     </div>
 

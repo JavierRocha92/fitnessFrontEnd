@@ -1,6 +1,11 @@
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  {{button_text}}
+
+
+<button type="button" class="w-100"  data-bs-toggle="modal" data-bs-target="#exampleModal">
+  <span class="shadow shadow--add"></span>
+  <span class="wdge edge--add"></span>
+  <span class="front front--add text"> {{button_text}}
+    <i class="fa-solid fa-plus"></i>
+  </span>
 </button>
 
 <!-- Modal -->
@@ -8,7 +13,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <h1 class="modal-title fs-5" id="exampleModalLabel">{{title}}</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="close_button"></button>
       </div>
       <div class="modal-body">

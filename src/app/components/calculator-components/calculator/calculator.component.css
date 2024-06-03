@@ -1,3 +1,13 @@
+.calculator{
+    position: relative;
+   
+}
+
+:host{
+    width: 100%;
+    padding: 16px;
+}
+
 button {
     position: relative;
     border: none;
@@ -9,7 +19,7 @@ button {
     user-select: none;
     touch-action: manipulation;
    }
-   
+
    .shadow {
     position: absolute;
     top: 0;
@@ -40,6 +50,13 @@ button {
        hsl(340deg 100% 16%) 100%
      );
    }
+button:disabled .front{
+    background-color: rgb(227, 226, 226);
+}
+button:disabled .edge{
+    background: rgb(227, 226, 226);
+}
+   
    
    .front {
     display: block;
@@ -87,3 +104,28 @@ button {
    button:focus:not(:focus-visible) {
     outline: none;
    }
+   .totals{
+    position: fixed;
+    right: 5%;
+    top: 15%;
+   }
+   .none{
+    display: none;
+   }
+
+   .show{
+    display: flex;
+   }
+   
+   @media screen and (max-width:1100px) {
+       .totals{
+        top: 10%;
+       }
+       
+    }
+   @media screen and (max-width:672px) {
+       .totals{
+        right: 2%;
+       }
+
+}

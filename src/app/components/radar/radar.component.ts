@@ -16,6 +16,7 @@ import {
 import { UsersService } from '../../services/users.service';
 import { Virtual_user } from '../../types/user';
 import { BioDatas, Measures } from '../../types/measures';
+import { ModalComponent } from '../modal/modal.component';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -40,7 +41,7 @@ type TypeName =
 @Component({
   selector: 'app-radar',
   standalone: true,
-  imports: [NgApexchartsModule],
+  imports: [NgApexchartsModule, ModalComponent],
   templateUrl: './radar.component.html',
   styleUrl: './radar.component.css',
 })
@@ -49,6 +50,7 @@ export class RadarComponent implements AfterViewInit {
   public chartOptions: Partial<ChartOptions> | any;
   series: any[] = [];
   datalabel_values: any[] = [];
+  user_on_demand : any
   constructor(private user_service: UsersService) {
     this.chartOptions = {
       series: [],
@@ -56,9 +58,12 @@ export class RadarComponent implements AfterViewInit {
       chart: {
         height: 350,
         type: 'radar',
+        toolbar: {
+          show: false,
+        },
       },
       dataLabels: {
-        enabled: true,
+        enabled: false,
       },
       plotOptions: {
         radar: {
@@ -68,12 +73,13 @@ export class RadarComponent implements AfterViewInit {
             fill: {
               colors: ['#f8f8f8', '#fff'],
             },
+            labels: {
+              show: false
+            }
           },
         },
       },
-      title: {
-        text: 'Measures',
-      },
+     
       colors: ['#FF4560'],
       markers: {
         size: 4,
@@ -81,15 +87,10 @@ export class RadarComponent implements AfterViewInit {
         strokeColors: ['#FF4560'],
         strokeWidth: 2,
       },
-      tooltip: {
-        y: {
-          formatter: function (val: any) {
-            return val;
-          },
-        },
-      },
+      
       xaxis: {
-        categories: ['Weight', 'Hip', 'Waist', 'Weight', 'BMI', 'Fat'],
+        categories: [],
+        // categories: ['Weight', 'Hip', 'Waist', 'Weight', 'BMI', 'Fat'],
       },
       yaxis: {
         tickAmount: 6,
@@ -103,14 +104,17 @@ export class RadarComponent implements AfterViewInit {
           },
         },
       },
+     
     };
   }
 
   ngAfterViewInit(): void {}
   ngOnInit(): void {
-    const virtual_user = this.user_service.getVirtualUserOnOFocus();
-    if (virtual_user) this.setSeriesData(virtual_user);
-    this.setCategories(virtual_user)
+    this.user_on_demand = this.user_service.getVirtualUserOnOFocus();
+
+    if (this.user_on_demand) this.setSeriesData(this.user_on_demand);
+    this.setCategories(this.user_on_demand)
+    
   }
 
   setCategories(virtual_user : any){
@@ -141,6 +145,8 @@ export class RadarComponent implements AfterViewInit {
       virtual_user.historical_bio_data,
       bio_data_data_type
     );
+
+    
 
     const percentajeValues = this.getPercentajeValues(
       filtered_measures,
@@ -209,6 +215,7 @@ export class RadarComponent implements AfterViewInit {
     filtered_bio_data: any,
     goal: number
   ) {
+    
     const all_data = filtered_measures.concat(filtered_bio_data).flat();
     return all_data.map((data: any) => {
       const percentage = this.getPercentaje(data, goal);
@@ -219,6 +226,7 @@ export class RadarComponent implements AfterViewInit {
   }
 
   getPercentaje(data: any, goal: number) {
+    
     const values = data.data;
     if (goal == 1)
       return Math.round(

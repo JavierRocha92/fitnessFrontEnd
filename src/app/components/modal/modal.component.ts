@@ -11,6 +11,7 @@ import { MeasureFormComponent } from '../measure-form/measure-form.component';
 export class ModalComponent {
   @Input() button_text !: string
   @Input() form_to_show !: string
+  @Input() title !: string
 
   constructor(){}
 

@@ -1,1 +1,9 @@
-/* You can add global styles to this file, and also import other style files */
+@import 'ngx-toastr/toastr';
+
+body{
+    max-width: 1400px;
+    min-width: 600px;
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+}

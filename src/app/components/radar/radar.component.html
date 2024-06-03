@@ -1,6 +1,12 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div id="chart">
-    <apx-chart
+
+  
+  <div class="card">
+    <h2>Targets</h2>
+    <div class="pulse"></div>
+    <div id="chart" class="chart-area">
+      @if(user_on_demand && user_on_demand.historical_measurements.length > 1){
+
+      <apx-chart class="grid"
       [series]="chartOptions.series"
       [chart]="chartOptions.chart"
       [xaxis]="chartOptions.xaxis"
@@ -14,5 +20,11 @@
       [fill]="chartOptions.fill"
       [title]="chartOptions.title"
     ></apx-chart>
+      }@else{
+        <h2 class="text-light p-3">Add measurements to see comparision</h2>
+    <app-modal [title] = '"Enter your measures"' [button_text] = '"Add new measures "' [form_to_show] = '"measures"'></app-modal>
+
+      }
+
+    </div>
   </div>
-  

@@ -1,0 +1,34 @@
+<form [formGroup]='formulario' (ngSubmit)='enviarFormulario()' class="mt-4">
+    <div class="mb-3 row">
+       
+        
+        <div class="formField offset-3 col-3">
+            <input type="text" class="form-control" [id]="'exampleInputFood' + food_index_input" [formControl]='foodControl' aria-describedby="emailHelp">
+            <span>Type a food</span>
+        </div>
+        <div class="formField col-3">
+            <input type="number" class="form-control" [id]="'exampleInputMeasure' + food_index_input" [formControl]='measureControl'
+            aria-describedby="emailHelp">
+            <span>Type a food</span>
+          </div>
+
+    </div>
+    <div class="buttons d-flex justify-content-around w-100">
+
+        
+        <button type="submit">
+            <span class="shadow"></span>
+            <span class="edge"></span>
+            <span class="front text"> Buscar
+            </span>
+        </button>
+        <button (click) = 'emitEvent()'>
+            <span class="shadow"></span>
+            <span class="edge"></span>
+            <span class="front text"> Eliminar alimento
+            </span>
+        </button>
+        
+    </div>
+    
+</form>

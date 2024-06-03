@@ -3,11 +3,13 @@ import { Router } from '@angular/router';
 import { TokenService } from '../../services/token.service';
 import { UsersService } from '../../services/users.service';
 import { WebserviceService } from '../../services/webservice.service';
+import { ToastrService } from 'ngx-toastr';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-user-avatar',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './user-avatar.component.html',
   styleUrl: './user-avatar.component.css',
 })
@@ -16,12 +18,14 @@ export class UserAvatarComponent{
   @Input() name!: string;
   isLoading: boolean = false;
   user_id: string | null | undefined;
+  @Input() isButton !: boolean 
 
   constructor(
     private router: Router,
     private token_service: TokenService,
     private user_service: UsersService,
-    private web_service: WebserviceService
+    private web_service: WebserviceService,
+    private toast_service : ToastrService
   ) {}
 
  
@@ -47,6 +51,7 @@ export class UserAvatarComponent{
         (response: any) => {
           resolve(response);
           if (response.success) {
+            this.toast_service.success('User deletion successfully')
             this.token_service.saveToken(response.token);
             this.user_service.setUser(
               response.user,
@@ -55,6 +60,8 @@ export class UserAvatarComponent{
             );
             this.isLoading = false;
             this.router.navigate(['/user-avatar']);
+          }else{
+            this.toast_service.info('User deltion unsuccessfully')
           }
         },
 
@@ -62,6 +69,7 @@ export class UserAvatarComponent{
           reject(error);
           console.log('respuesta de error en el server');
           this.isLoading = false;
+          this.toast_service.error('Something went wrong')
         }
       );
     });

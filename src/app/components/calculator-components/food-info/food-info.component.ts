@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FoodsService } from '../../services/foods.service';
+import { FoodsService } from '../../../services/foods.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -17,9 +17,11 @@ export class FoodInfoComponent implements OnInit {
   ingredient: any;
   weight_from_from: number = 0;
 
+
   constructor(private food_service: FoodsService) {}
 
   ngOnInit(): void {
+   
     this.food_service.getFoodData().subscribe((data: any) => {
       /* Verificacion de si el objeto ya ha sido procesado */
       if (Object.keys(this.nutrients).length > 0) return;
@@ -38,9 +40,10 @@ export class FoodInfoComponent implements OnInit {
 
         if (!this.nutrients.length) this.loadIngredients();
 
-        this.show_data = true;;
+        this.show_data = true;
 
         this.food_service.saveRealFoodData(this.nutrients);
+
       }
     });
   }
@@ -55,5 +58,6 @@ export class FoodInfoComponent implements OnInit {
         this.nutrients[key] = parseInt(processedValue);
       }
     }
+    
   }
 }

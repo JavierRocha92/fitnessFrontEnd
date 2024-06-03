@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 import { WebserviceService } from '../../services/webservice.service';
 import { TokenService } from '../../services/token.service';
 import { UsersService } from '../../services/users.service';
+import { ToastrService } from 'ngx-toastr';
 interface LoginData {
   email: string;
   pass: string;
@@ -37,13 +38,16 @@ export class LoginFormComponent implements OnInit {
   passControl!: FormControl;
   isLoading: boolean = false;
   register: boolean = false;
+  error_login : boolean = false
+  server_login : boolean = false
 
   constructor(
     private builder: FormBuilder,
     private router: Router,
     private web_service: WebserviceService,
     private token_service: TokenService,
-    private user_service: UsersService
+    private user_service: UsersService,
+    private toast_service : ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -83,7 +87,6 @@ export class LoginFormComponent implements OnInit {
 
   sendData(form_data: RegisterData) {
     this.isLoading = true;
-    console.log(`estoy cargando ${this.isLoading}`)
     const post_route = this.register ? 'register/' : 'login/';
     return new Promise(async (resolve, reject) => {
       this.web_service.post(
@@ -91,18 +94,32 @@ export class LoginFormComponent implements OnInit {
         form_data,
         (response: any) => {
           resolve(response);
+          this.server_login = false
           if (response.success) {
+            /* Borramos con el logout todo lo que hubiera guardado en el local stroage para evitrar errores */
+            this.user_service.logOut()
             this.token_service.saveToken(response.token);
             this.user_service.setUser(response.user, response.virtual_users, response.avg_data);
             this.isLoading = false;
+            this.error_login = false
             this.router.navigate(['/user-avatar']);
+            this.toast_service.success('User registered successfully')
+          }
+          else{
+            this.isLoading = false
+            if(response.code == 2000){
+              this.error_login = true
+              this.toast_service.info('User unregistered')
+            }
           }
         },
 
         (error: any) => {
           reject(error);
-          console.log('respuesta de error en el server');
+          
           this.isLoading = false;
+          this.server_login = true
+          
         }
       );
     });

@@ -65,7 +65,6 @@ export class RecipeComponent implements OnInit {
   
   setRecipeOnChange(){
     this.recipes_service.setRecipeOnChange(this.recipe)
-
   }
 
   

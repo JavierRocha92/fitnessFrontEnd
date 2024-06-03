@@ -3,7 +3,13 @@ import { Exercise } from '../../../types/exercise';
 import { Router } from '@angular/router';
 //Estos archivos se importan solo para el control del formulario
 import { Component, Input, EventEmitter, Output } from '@angular/core';
-import { ReactiveFormsModule, FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import {
+  ReactiveFormsModule,
+  FormBuilder,
+  FormGroup,
+  Validators,
+  FormControl,
+} from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -11,50 +17,47 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './exercise-form.component.html',
-  styleUrl: './exercise-form.component.css'
+  styleUrl: './exercise-form.component.css',
 })
 export class FormExerciseComponent {
-
-
-  
   formulario!: FormGroup;
   body_partControl!: FormControl;
-  food_data: any
-  show_data: boolean = false
-  @Input() food_index_input! : string  
-  @Output() removeFoodFromArray : EventEmitter<any> = new EventEmitter<any>()
-  weight_data : number [] = []
-  
-  constructor(private formBuilder: FormBuilder, private router: Router, private calculator : CalculatorService) { }
+  food_data: any;
+  show_data: boolean = false;
+  @Input() food_index_input!: string;
+  @Output() removeFoodFromArray: EventEmitter<any> = new EventEmitter<any>();
+  weight_data: number[] = [];
 
-  
+  constructor(
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private calculator: CalculatorService
+  ) {
+    this.sendData('cardio');
+  }
+
   ngOnInit(): void {
-
     this.body_partControl = new FormControl('', Validators.required);
 
     this.formulario = this.formBuilder.group({
       name: this.body_partControl,
     });
+
+    this.sendData({name : 'cardio'})
   }
 
-  
-  
-  
-  hanlderForm(): void {
+  handlerForm() {
     if (this.formulario.valid) {
       const exercise = {
-        name: this.body_partControl.value
+        name: this.body_partControl.value,
       };
-      this.calculator.getCaloriesBurned(exercise).subscribe((data : any) =>{
-        this.calculator.saveData(data)
-      })
-
+      this.sendData(exercise);
     }
   }
 
-
-
+  sendData(exercise: any ) {
+    this.calculator.getCaloriesBurned(exercise).subscribe((data: any) => {
+      this.calculator.saveData(data);
+    });
+  }
 }
-
-
-

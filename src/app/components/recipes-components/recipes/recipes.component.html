@@ -3,20 +3,24 @@
    @if(error){
    <h3 class="error">Lo sentimo pero ha ocurrido un error, intentelo de nuevo</h3>
    }@else {
+  @if(isLoading){
+    <app-loader></app-loader>
+  }@else{
 
-   @if(current_recipes){
+    @if(current_recipes){
       <div class="buttons w-100 d-flex justify-content-between p-3">
-         <button [disabled]="!previous" (click)='searchRecipe(previous!.href)'>Previous page</button>
+        <button [disabled]="!previous" (click)='searchRecipe(previous!.href)'>Previous page</button>
          <button [disabled]="!next" (click)='searchRecipe(next!.href)'>Next page</button>
-      </div>
-   <div class="recipes__container w-100">
-      @for(recipe of current_recipes; track recipe){
-      <app-recipe [recipe_data]='recipe'></app-recipe>
-
+        </div>
+        <div class="recipes__container w-100">
+          @for(recipe of current_recipes; track recipe){
+            <app-recipe [recipe_data]='recipe'></app-recipe>
+            
+          }
+        </div>
       }
-   </div>
-   }
-   }
+    }
+  }
          <!-- Modal -->
          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-xl">

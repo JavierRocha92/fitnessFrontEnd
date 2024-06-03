@@ -1,5 +1,6 @@
 import { Component, ViewChild, Input, OnInit } from '@angular/core';
 import { Measures, BioDatas } from '../../types/measures';
+
 import {
   ChartComponent,
   ApexAxisChartSeries,
@@ -38,11 +39,16 @@ export class AreaComponent implements OnInit {
   @ViewChild('chart') chart: ChartComponent | any;
   public chartOptions: Partial<ChartOptions> | any;
   @Input() measures!: Measures | BioDatas;
-  @Input() type: string | undefined;
+  @Input() type!: string;
   series: any;
   dates: any;
+  image_path = "../../../assets/images/"
+  last_value : string | undefined
+  @Input() image_name !: string
   constructor(private chart_service: ChartSeriesServiceService) {}
   ngOnInit(): void {
+    // this.image_path = this.image_path
+    this.image_path = this.image_path + this.image_name 
     this.series = this.setSeriesData();
     this.dates = this.setDatesData();
     this.setInitialData()
@@ -51,101 +57,88 @@ export class AreaComponent implements OnInit {
         {
           name: this.type,
           data: this.series,
+          markers: {
+            size: 0 // Desactiva los marcadores
+          },
+         
         },
+        
+        
       ],
       chart: {
         width: '100%',
-        padding: {
-          left: 0, // Sin padding a la izquierda
-          right: 0, // Sin padding a la derecha
-          top: 0, // Sin padding arriba
-          bottom: 0, // Sin padding abajo
-        },
+        
         zoom: {
-          enabled: false, // Desactiva la funcionalidad de zoom
+          enabled: false, 
         },
         type: 'area',
         toolbar: {
           show: false,
         },
-        yaxis: {
-          lines: {
-            show: false,
-          },
-        },
-        xaxis: {
-          lines: {
-            show: false,
-          },
-        },
-        offsetX: 0, // Desplazamiento horizontal del gráfico
-        offsetY: 0, // Desplazamiento vertical del gráfico
+      
       },
+
       plotOptions: {
-        bar: {
-          horizontal: false, // Puedes establecer esto en true si deseas barras horizontales
-        },
+        
+        area: {
+          stroke: {
+            width: 3,
+            curve: 'smooth'
+          }
+        }
       },
+      
       dataLabels: {
         enabled: false,
+        show : false
       },
-      stroke: {
-        curve: 'smooth',
-        with: 2,
+    
+     
+      fill: {
+        type: "gradient",
+        gradient: {
+          type: "vertical",
+          opacityFrom: 1,
+          opacityTo: 0.8,
+          stops: [0, 10],
+          colorStops: [
+            /* ESTE ES EL COLOR DEL AREA */
+            {
+              offset: 0,
+              opacity: 0.2,
+              color: this.bg_color,
+            },
+            {
+              offset: 100,
+              opacity: 0,
+              color: this.bg_color,
+            },
+          ],
+        },
+      },
+    
+      grid: {
+        borderColor: "rgba(0, 0, 0, 0)",
+        padding: {
+          top: -30,
+          right: 0,
+          bottom: -8,
+          left: 12,
+        },
+      },
+      stroke : {
+        colors : [this.bg_color]
+      },
+    
+      yaxis: {
+        show: false,
       },
       xaxis: {
-        type: 'datetime',
-        categories: this.dates,
-        labels: {
-          show: false,
-        },
+        show: false,
       },
-      yaxis: {
-        labels: {
-          show: false,
-        },
-      },
-      tooltip: {
-        x: {
-          format: 'dd/MM/yy HH:mm',
-        },
-        enabled: false,
-      },
-      title: {
-        text: this.type,
-        align: 'left',
-      },
-      grid: {
-        show: true,
-        borderColor: '#90A4AE',
-        strokeDashArray: 0,
-        position: 'back',
-        xaxis: {
-          lines: {
-            show: false,
-          },
-        },
-        yaxis: {
-          lines: {
-            show: false,
-          },
-        },
-        row: {
-          colors: undefined,
-          opacity: 0.5,
-        },
-        column: {
-          colors: undefined,
-          opacity: 0.5,
-        },
-        padding: {
-          top: 0,
-          right: 0,
-          bottom: 0,
-          left: 0,
-        },
-      },
-    };
+    
+   
+  }
   }
 
   public setSeriesData(): any[] {
@@ -157,7 +150,13 @@ export class AreaComponent implements OnInit {
       series.push(data_to_show);
     });
 
+    this.setLastValue(series)
+
     return series;
+  }
+
+  setLastValue(series : any){
+    this.last_value = series[series.length -1] + ' ' + this.uds
   }
 
   public setDatesData(): any {
@@ -180,7 +179,6 @@ export class AreaComponent implements OnInit {
     if(this.set_initial_data)
       this.chart_service.addNewSeries(this.asJson());
 
-    
   }
 
   private asJson() {
@@ -191,4 +189,6 @@ export class AreaComponent implements OnInit {
       dates : this.dates
     };
   }
+
+
 }

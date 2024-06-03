@@ -8,6 +8,7 @@ import { MealPlannerTableComponent } from '../meal-planner-table/meal-planner-ta
 import { ToastrService } from 'ngx-toastr';
 import { WebserviceService } from '../../../services/webservice.service';
 import { UsersService } from '../../../services/users.service';
+import { LoaderComponent } from '../../loader/loader.component';
 
 @Component({
   selector: 'app-recipes',
@@ -17,6 +18,7 @@ import { UsersService } from '../../../services/users.service';
     RecipeComponent,
     CommonModule,
     MealPlannerTableComponent,
+    LoaderComponent
   ],
   templateUrl: './recipes.component.html',
   styleUrl: './recipes.component.css',
@@ -16178,41 +16180,42 @@ export class RecipesComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.user_service.checkSession()
     this.recipe_service.newRecipeOnLocalStorage().subscribe(() => {
-      if (this.initial_counter > 1) {
-        document.getElementById('close-button-modal')?.click();
-        this.throwSuccessNotitication();
-      }
-      this.initial_counter++;
+      
     });
 
     /* Subcripcion para hacer peticion de las recetas al api de recetas */
-
-    // this.recipe_service.getRecipes().subscribe(
-    //   (data: any) => {
-    //     if (data) {
-
-    //       this.current_recipes = data.recipes
-    //       this.next = data.next
-    //       this.previous = data.previous
-    //       this.error = false
-    //     }
-    //   },
-    //   (error) => {
-    //     console.log('request error')
-    //     console.error(error)
-    //     this.error = true
-    //   }
-    // )
+    this.isLoading = true
+    this.recipe_service.getRecipes().subscribe(
+      (data: any) => {
+        if (data) {
+          this.setrequestData(data)
+          this.isLoading = false
+        }
+      },
+      (error) => {
+        console.log('request error')
+        console.error(error)
+        this.error = true
+        this.isLoading = false
+      }
+    )
 
     /* Lamada al servicio de recipes para que recupere la informacion del mealplanner del usuario de la base de datos */
-    this.virtual_user_on_demand = this.user_service.getVirtualUserOnOFocus()
-    this.recipe_service.getMealPlannerFromDatabase(this.virtual_user_on_demand['ID'])
+    // this.virtual_user_on_demand = this.user_service.getVirtualUserOnOFocus()
+    // this.recipe_service.getMealPlannerFromDatabase(this.virtual_user_on_demand['ID'])
 
-    this.current_recipes = this.data.recipes;
-    this.next = this.data.next;
-    this.previous = this.data.previous;
-    this.error = false;
+    
+  }
+
+  setrequestData(data : any){
+
+    this.current_recipes = data.recipes
+    this.next = data.next
+    this.previous = data.previous
+    this.error = false
+    
   }
 
   onSaveMealPlanner() {
@@ -16237,22 +16240,21 @@ export class RecipesComponent implements OnInit {
         `recipes/`, /* ruta para guardar el meal planner */
         this.data_to_save,
         (response: any) => {
-          console.log('esta es la response');
-          console.log(response);
           resolve(response);
-          if (response.success) {
-            // this.emitEvent();
-           
-            this.isLoading = false;
-
-            // this.router.navigate(['/user-avatar']);
+          if (response.success) { 
+            this.toast_service.success('Meal planner saved successfully')
+            document.getElementById('close-button-modal')?.click()
+          }else{
+            this.toast_service.info('Meal planner unsaved')
           }
+          this.isLoading = false;
         },
 
         (error: any) => {
           reject(error);
           console.log('respuesta de error en el server');
           this.isLoading = false;
+          this.toast_service.error('Something wnet wrong')
         }
       );
     });

@@ -5,6 +5,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { FormData } from '../../app/types/form';
 import { Recipes } from '../../app/types/recipes';
 import { WebserviceService } from './webservice.service';
+import { ToastrService } from 'ngx-toastr';
 @Injectable({
   providedIn: 'root',
 })
@@ -46,6 +47,45 @@ export class RecipesService {
       calories: 0,
     },
   ];
+  
+  new_planner: any = [
+    {
+      day: 'Monday',
+      meals: { breakfast: {}, lunch: {}, dinner: {}, snack: {}, tea_time: {} },
+      calories: 0,
+    },
+    {
+      day: 'Tuesday',
+      meals: { breakfast: {}, lunch: {}, dinner: {}, snack: {}, tea_time: {} },
+      calories: 0,
+    },
+    {
+      day: 'Wednesday',
+      meals: { breakfast: {}, lunch: {}, dinner: {}, snack: {}, tea_time: {} },
+      calories: 0,
+    },
+    {
+      day: 'Thursday',
+      meals: { breakfast: {}, lunch: {}, dinner: {}, snack: {}, tea_time: {} },
+      calories: 0,
+    },
+    {
+      day: 'Friday',
+      meals: { breakfast: {}, lunch: {}, dinner: {}, snack: {}, tea_time: {} },
+      calories: 0,
+    },
+    {
+      day: 'Saturday',
+      meals: { breakfast: {}, lunch: {}, dinner: {}, snack: {}, tea_time: {} },
+      calories: 0,
+    },
+    {
+      day: 'Sunday',
+      meals: { breakfast: {}, lunch: {}, dinner: {}, snack: {}, tea_time: {} },
+      calories: 0,
+    },
+  ];
+
   subject_recipes_planner: BehaviorSubject<any> = new BehaviorSubject<any>([]);
 
   recipe_on_change: any = {};
@@ -56,12 +96,12 @@ export class RecipesService {
   // url_api_base = 'https://api.edamam.com/api/rtype=public&q=chicken&'
   url_api_base = 'https://api.edamam.com/api/recipes/v2?type=public&q=chicken&';
 
-  meal_planer_url : string = '/recipes'
+  meal_planer_url : string = 'recipes'
 
   recipes: any;
   recipes_subject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
 
-  constructor(private http: HttpClient, private web_service : WebserviceService) {
+  constructor(private http: HttpClient, private web_service : WebserviceService, private toast_service : ToastrService) {
     const meal_planner_on_local_storage = localStorage.getItem('meal_planner')
     if(meal_planner_on_local_storage)
       this.recipes_planner = JSON.parse(meal_planner_on_local_storage)
@@ -82,7 +122,7 @@ export class RecipesService {
   }
 
   getMealPlannerFromDatabase(virtual_user_id : string){
-
+    
     return new Promise(async (resolve, reject) => {
       this.web_service.get(
         this.meal_planer_url,
@@ -90,14 +130,16 @@ export class RecipesService {
         (response: any) => {
           resolve(response);
           if (response.success) {
-            console.log('esta es la respuesta afirmativa')
-            console.log(response)
+            return response
           }
+         
         },
-
+        
         (error: any) => {
           reject(error);
+          this.toast_service.error('Maintenance application server')
           console.log('respuesta de error en el server');
+          return false
           
         }
       );
@@ -145,10 +187,8 @@ export class RecipesService {
   }
 
   setRecipesPlannerToLocalStorage(meal_planner: any) {
-    /* Primero tengo que mirar si quieren machacarlo */
+    /* Primero miro si recibo parametro para sobreescribir el ls */
     if (meal_planner) {
-      console.log('entro aqui para machacar lo que tengo con esto')
-      console.log(meal_planner)
       localStorage.setItem('meal_planner', JSON.stringify(this.setTotalCalories(meal_planner)));
     } else {
       /* hay que mirar antes si tenemos algo en el ls para si tenemos algo directamente mandarlo sin guardar nada mas */
@@ -160,7 +200,7 @@ export class RecipesService {
 
       localStorage.setItem(
         'meal_planner',
-        JSON.stringify(this.recipes_planner)
+        JSON.stringify(this.new_planner)
       );
     }
 
@@ -185,12 +225,15 @@ export class RecipesService {
   getMealPlannerFromLocalStorage(){
     let new_meal_planner = localStorage.getItem('meal_planner')
     if(new_meal_planner){
-      console.log('entro en el get porque tengo cosas en ls')
       new_meal_planner = JSON.parse(new_meal_planner)
       return new_meal_planner
     }
     return null
       
+  }
+
+  deleteMealPlannerFromLocalstorage(){
+    localStorage.removeItem('meal_planner')
   }
 
   updateRecipesPlanner(meal_planner : any) {
@@ -234,7 +277,7 @@ export class RecipesService {
   setRecipeOnChangeAsJson(recipe_on_change: any) {
     this.recipe_on_change = {
       name: recipe_on_change.label,
-      image: recipe_on_change.image,
+      // image: recipe_on_change.image,
       calories: (recipe_on_change.calories / recipe_on_change.yield).toFixed(),
     };
   }

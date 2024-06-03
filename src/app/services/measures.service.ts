@@ -21,14 +21,19 @@ export class MeasuresService {
 
   constructor(private http: HttpClient) { }
 
-  fetchMeasures(request_params: any) {
+  fetchTotalMeasures(request_params: any) : Observable<any>{
     const headers = this.getHeaders()
     const body = this.getParams(request_params)
     const url = this.api_url
 
-    this.http.post(url, body.toString(), { headers }).subscribe((data : any) => {
-      this.saveData(data)
-    })
+    return this.http.post(url, body.toString(), { headers })
+  }
+  fetchTargetMeasures(request_params: any) : Observable<any>{
+    const headers = this.getHeaders()
+    const body = this.getParams(request_params)
+    const url = this.api_url
+
+    return this.http.post(url, body.toString(), { headers })
   }
 
   getData(): Observable<any> {

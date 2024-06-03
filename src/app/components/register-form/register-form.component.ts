@@ -16,6 +16,7 @@ import { WebserviceService } from '../../services/webservice.service';
 import { TokenService } from '../../services/token.service';
 import { UsersService } from '../../services/users.service';
 import { MeasuresService } from '../../services/measures.service';
+import { ToastrService } from 'ngx-toastr';
 
 interface RegisterVirtualData {
   physical_user_id: string;
@@ -47,275 +48,8 @@ interface RegisterVirtualData {
   styleUrl: './register-form.component.css',
 })
 export class RegisterFormComponent implements OnInit {
-  data = {
-    age: 30,
-    basalMetabolicRate: {
-      hb: {
-        calories: {
-          unit: ['Kcal', 'kilocalories'],
-          value: 2023.8,
-        },
-        formulaName: 'Harris-Benedict',
-        joules: {
-          unit: ['Kj', 'kilojoules'],
-          value: 8467.6,
-        },
-      },
-      msj: {
-        calories: {
-          unit: ['Kcal', 'kilocalories'],
-          value: 1923,
-        },
-        formulaName: 'Harris-Benedict revised by Mifflin-St Jeor',
-        joules: {
-          unit: ['Kj', 'kilojoules'],
-          value: 8045.8,
-        },
-      },
-      rs: {
-        calories: {
-          unit: ['Kcal', 'kilocalories'],
-          value: 2008.8,
-        },
-        formulaName: 'Harris-Benedict revised by Roza-Shizgal',
-        joules: {
-          unit: ['Kcal', 'kilocalories'],
-          value: 8404.8,
-        },
-      },
-    },
-    bodyFatPercentage: {
-      bmi: {
-        conclusion: 'Acceptable',
-        formulaName: 'From BMI',
-        unit: ['%', 'percents'],
-        value: 20,
-      },
-      dod: {
-        conclusion: 'Fitness (in shape)',
-        formulaName: 'Department of Defense',
-        unit: ['%', 'percents'],
-        value: 14.5,
-      },
-      ymca: {
-        conclusion: 'Fitness (in shape)',
-        formulaName: 'YMCA',
-        unit: ['%', 'percents'],
-        value: 15.2,
-      },
-    },
-    bodyMassIndex: {
-      conclusion: 'Normal',
-      unit: 'Kg/m²',
-      value: 24.4,
-    },
-    deficit: -500,
-    exercise: 'little',
-    goalWeight: 85,
-    height: 190,
-    hip: 100,
-    idealBodyWeight: {
-      devine: {
-        formulaName: 'Devine',
-        imperial: {
-          unit: ['lbs', 'pounds'],
-          value: 185.3,
-        },
-        metric: {
-          unit: ['Kg', 'kilograms'],
-          value: 84,
-        },
-      },
-      hamwi: {
-        formulaName: 'Hamwi',
-        imperial: {
-          unit: ['lbs', 'pounds'],
-          value: 193.9,
-        },
-        metric: {
-          unit: ['Kg', 'kilograms'],
-          value: 88,
-        },
-      },
-      lorentz: {
-        formulaName: 'Lorentz',
-        imperial: {
-          unit: ['lbs', 'pounds'],
-          value: 176.4,
-        },
-        metric: {
-          unit: ['Kg', 'kilograms'],
-          value: 80,
-        },
-      },
-      miller: {
-        formulaName: 'Miller',
-        imperial: {
-          unit: ['lbs', 'pounds'],
-          value: 169.9,
-        },
-        metric: {
-          unit: ['Kg', 'kilograms'],
-          value: 77.1,
-        },
-      },
-      peterson: {
-        formulaName: 'Peterson et al.',
-        imperial: {
-          unit: ['lbs', 'pounds'],
-          value: 193.7,
-        },
-        metric: {
-          unit: ['Kg', 'kilograms'],
-          value: 87.8,
-        },
-      },
-      robinson: {
-        formulaName: 'Robinson',
-        imperial: {
-          unit: ['lbs', 'pounds'],
-          value: 176.6,
-        },
-        metric: {
-          unit: ['Kg', 'kilograms'],
-          value: 80.1,
-        },
-      },
-    },
-    leanBodyMass: {
-      bmi: {
-        formulaName: 'From BMI',
-        unit: ['Kg', 'kilograms'],
-        value: 70.4,
-      },
-      dod: {
-        formulaName: 'From Department of Defense',
-        unit: ['%', 'percents'],
-        value: 75.2,
-      },
-      ymca: {
-        formulaName: 'From YMCA',
-        unit: ['%', 'percents'],
-        value: 74.6,
-      },
-    },
-    neck: 41,
-    restingDailyEnergyExpenditure: {
-      bmi: {
-        calories: {
-          unit: ['Kcal', 'kilocalories'],
-          value: 1890.6,
-        },
-        formulaName: 'Katch-McArdle',
-        joules: {
-          unit: ['Kj', 'kilojoules'],
-          value: 7910.3,
-        },
-      },
-      dod: {
-        calories: {
-          unit: ['Kcal', 'kilocalories'],
-          value: 1994.3,
-        },
-        formulaName: 'Katch-McArdle',
-        joules: {
-          unit: ['Kj', 'kilojoules'],
-          value: 8344.2,
-        },
-      },
-      ymca: {
-        calories: {
-          unit: ['Kcal', 'kilocalories'],
-          value: 1981.4,
-        },
-        formulaName: 'Katch-McArdle',
-        joules: {
-          unit: ['Kj', 'kilojoules'],
-          value: 8290.2,
-        },
-      },
-    },
-    timeBeforeGoalWeight: {
-      unit: ['d', 'days'],
-      value: 46,
-    },
-    totalDailyEnergyExpenditure: {
-      bmi: {
-        calories: {
-          unit: ['Kcal', 'kilocalories'],
-          value: 2269,
-        },
-        formulaName: 'From RDEE and BMI.',
-        joules: {
-          unit: ['Kj', 'kilojoules'],
-          value: 9493.5,
-        },
-      },
-      dod: {
-        calories: {
-          unit: ['Kcal', 'kilocalories'],
-          value: 2393,
-        },
-        formulaName: 'From RDEE and Department of Defense',
-        joules: {
-          unit: ['Kj', 'kilojoules'],
-          value: 10012.3,
-        },
-      },
-      hb: {
-        calories: {
-          unit: ['Kcal', 'kilocalories'],
-          value: 2429,
-        },
-        formulaName: 'From BMR and Harris-Benedict',
-        joules: {
-          unit: ['Kj', 'kilojoules'],
-          value: 10162.9,
-        },
-      },
-      msj: {
-        calories: {
-          unit: ['Kcal', 'kilocalories'],
-          value: 2308,
-        },
-        formulaName: 'From BMR and Mifflin-St. Jeor',
-        joules: {
-          unit: ['Kj', 'kilojoules'],
-          value: 9656.7,
-        },
-      },
-      rs: {
-        calories: {
-          unit: ['Kcal', 'kilocalories'],
-          value: 2411,
-        },
-        formulaName: 'From BMR and Roza-Shizgal',
-        joules: {
-          unit: ['Kj', 'kilojoules'],
-          value: 10087.6,
-        },
-      },
-      ymca: {
-        calories: {
-          unit: ['Kcal', 'kilocalories'],
-          value: 2378,
-        },
-        formulaName: 'From RDEE and Department of Defense',
-        joules: {
-          unit: ['Kj', 'kilojoules'],
-          value: 9949.6,
-        },
-      },
-    },
-    waist: 88,
-    waistToHipRatio: {
-      conclusion: 'Low health risk',
-      value: 0.88,
-    },
-    weight: 88,
-  };
-
-  @Output() onReponseSuccess = new EventEmitter<any>()
+ 
+  @Output() onReponseSuccess = new EventEmitter<any>();
 
   user_to_insert: any;
 
@@ -342,7 +76,8 @@ export class RegisterFormComponent implements OnInit {
     private web_service: WebserviceService,
     private token_service: TokenService,
     private user_service: UsersService,
-    private measure_service: MeasuresService
+    private measure_service: MeasuresService,
+    private toast_service: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -420,25 +155,24 @@ export class RegisterFormComponent implements OnInit {
         physical_user_id: this.user_service.getUserData()?.ID,
         name: this.nameControl.value,
         goal: this.goalControl.value,
-        goalWeight: this.target_weightControl.value.toString(),
+        target_weight: this.target_weightControl.value,
         target_hip_circumference:
-          this.target_hip_circumferenceControl.value.toString(),
+          this.target_hip_circumferenceControl.value,
         target_waist_circumference:
-          this.target_waist_circumferenceControl.value.toString(),
-        age: this.ageControl.value.toString(),
+          this.target_waist_circumferenceControl.value,
+        age: this.ageControl.value,
         exercise: this.activity_levelControl.value,
-        weight: this.weightControl.value.toString(),
-        hip: this.hip_circumferenceControl.value.toString(),
-        waist: this.waist_circumferenceControl.value.toString(),
-        height: this.heightControl.value.toString(),
+        weight: this.weightControl.value,
+        hip_circumference: this.hip_circumferenceControl.value,
+        waist_circumference: this.waist_circumferenceControl.value,
+        height: this.heightControl.value,
         gender: this.genderControl.value,
 
-        // deficit: this.deficitControl.value.toString(),
       };
 
       this.setValuesToUserToInsert();
 
-      this.sendData()
+      this.sendData();
     }
   }
 
@@ -451,12 +185,12 @@ export class RegisterFormComponent implements OnInit {
         `register/virtual`,
         this.user_to_insert,
         (response: any) => {
-          console.log('esta es la response');
-          console.log(response);
           resolve(response);
           if (response.success) {
-            this.emitEvent()
+            this.emitEvent();
+            this.form.reset()
             this.token_service.saveToken(response.token);
+            
             this.user_service.setUser(
               response.user,
               response.virtual_users,
@@ -464,7 +198,13 @@ export class RegisterFormComponent implements OnInit {
             );
             this.isLoading = false;
 
-            this.router.navigate(['/user-avatar']);
+            // window.location.reload()
+            this.toast_service.success('User registered successfully');
+          } else {
+            if (response.code == 1000) {
+              this.toast_service.info('User unregistered');
+              this.isLoading = false;
+            }
           }
         },
 
@@ -472,17 +212,177 @@ export class RegisterFormComponent implements OnInit {
           reject(error);
           console.log('respuesta de error en el server');
           this.isLoading = false;
+          this.toast_service.error('Something went wrong');
         }
       );
     });
   }
 
+
   setValuesToUserToInsert() {
-    /*1. Tenemos que hacer peticion a la api y traernos los datos de calculadora */
-    const data = this.data;
-    this.setDataToUser(data, 'user');
-    this.setDataToUser(data, 'target');
+    const calculate_data_user = this.getCalculatedData('user');
+    this.setDataToUser(calculate_data_user, 'user');
+    
+    const calculate_data_target = this.getCalculatedData('target');
+    this.setDataToUser(calculate_data_target, 'target');
+    
+    /* calculara a mano el imc y la grasa de las medidas originales */
     this.processUserValues();
+   console.log('final user')
+   console.log(this.user_to_insert)
+
+  }
+
+  getCalculatedData(type: string) {
+    if (type == 'user') {
+      const bmi = this.getBMI(
+        this.user_to_insert.weight,
+        this.user_to_insert.height
+      );
+      const body_fat = this.getBodyFatPercentage(
+        this.user_to_insert.weight,
+        this.user_to_insert.height,
+        this.user_to_insert.waist_circumference,
+        this.user_to_insert.hip_circumference,
+        this.user_to_insert.age,
+        this.user_to_insert.gender
+      );
+      const daily_calories = this.getDailyCalories(
+        this.user_to_insert.weight,
+        this.user_to_insert.height,
+        this.user_to_insert.age,
+        this.user_to_insert.gender,
+        this.user_to_insert.activity_level
+      );
+      return {
+        bmi: bmi,
+        body_fat: body_fat,
+        daily_calories: daily_calories,
+      };
+    }
+    if (type == 'target') {
+      const bmi = this.getBMI(
+        this.user_to_insert.target_weight,
+        this.user_to_insert.height
+      );
+      const body_fat = this.getBodyFatPercentage(
+        this.user_to_insert.target_weight,
+        this.user_to_insert.height,
+        this.user_to_insert.target_waist_circumference,
+        this.user_to_insert.target_hip_circumference,
+        this.user_to_insert.age,
+        this.user_to_insert.gender
+      );
+
+      return {
+        bmi: bmi,
+        body_fat: body_fat,
+      };
+    } else return null;
+  }
+
+  getBMI(weight: number, height: number): number {
+    height = height / 100;
+    const bmi = weight / (height * height);
+
+    return bmi;
+    // return weight / (height * height);
+  }
+  getBodyFatPercentage(
+    weight: number,
+    height: number,
+    waistCircumference: number,
+    hipCircumference: number,
+    age: number,
+    gender: 'male' | 'female'
+  ): number {
+    console.log('weight')
+    console.log(weight)
+    console.log('height')
+    console.log(height)
+    console.log('waistCircumference')
+    console.log(waistCircumference)
+    console.log('hipCircumference')
+    console.log(hipCircumference)
+    console.log('age')
+    console.log(age)
+    console.log('gender')
+    console.log(gender)
+    const bmi = this.getBMI(weight, height);
+
+    // Calcular el porcentaje de grasa corporal
+    let bodyFatPercentage: number;
+
+    
+    if (gender === 'male') {
+      bodyFatPercentage = 1.082 * bmi + 94.42 - (age * 0.02);
+  } else if (gender === 'female') {
+      bodyFatPercentage = 1.082 * bmi + 88.36 - (age * 0.02);
+  }else{
+    bodyFatPercentage = 0
+  }
+
+  // Calculamos el porcentaje de grasa corporal
+  let bodyFatPercentageProcessed = (waistCircumference * 0.74) - (hipCircumference * 0.74) + (bodyFatPercentage * 0.2);
+
+
+    // Incorporar la age en el cálculo
+    if (age <= 29) {
+      bodyFatPercentageProcessed += 1; // Añadir 1 al porcentaje de grasa corporal si la age es menor o igual a 29
+    } else if (age >= 30 && age <= 39) {
+      bodyFatPercentageProcessed += 2; // Añadir 2 al porcentaje de grasa corporal si la age está entre 30 y 39
+    } else if (age >= 40 && age <= 49) {
+      bodyFatPercentageProcessed += 3; // Añadir 3 al porcentaje de grasa corporal si la age está entre 40 y 49
+    } else {
+      bodyFatPercentageProcessed += 4; // Añadir 4 al porcentaje de grasa corporal si la age es mayor o igual a 50
+    }
+
+    console.log('este es el porcentaje de graasa')
+    console.log(bodyFatPercentageProcessed)
+
+    
+
+    return bodyFatPercentageProcessed;
+  }
+
+  getDailyCalories(
+    weight: number,
+    height: number,
+    age: number,
+    gender: 'male' | 'female',
+    activityLevel: string
+  ): number {
+    const activity_level_as_number = this.getActivityLevel(activityLevel);
+    let bmr: number;
+    if (gender === 'male') {
+      bmr = 88.362 + 13.397 * weight + 4.799 * height - 5.677 * age;
+    } else {
+      bmr = 447.593 + 9.247 * weight + 3.098 * height - 4.33 * age;
+    }
+
+    // Multiply BMR by activity level
+    const dailyCalories = bmr * activity_level_as_number;
+
+    return dailyCalories;
+  }
+
+  getActivityLevel(type: string): number {
+    let activity_level_as_number;
+    switch (type) {
+      case 'Low':
+        activity_level_as_number = 1.2;
+        break;
+      case 'High':
+        activity_level_as_number = 1.8;
+        break;
+      case 'Moderate':
+        activity_level_as_number = 1.55;
+        break;
+      default:
+        activity_level_as_number = 1.55;
+    }
+
+    return activity_level_as_number;
   }
 
   processUserValues() {
@@ -490,15 +390,15 @@ export class RegisterFormComponent implements OnInit {
       physical_user_id: this.user_to_insert.physical_user_id,
       name: this.user_to_insert.name,
       goal: this.user_to_insert.goal,
-      target_weight: this.user_to_insert.goalWeight,
+      target_weight: this.user_to_insert.target_weight,
       target_hip_circumference: this.user_to_insert.target_hip_circumference,
       target_waist_circumference:
         this.user_to_insert.target_waist_circumference,
       age: this.user_to_insert.age,
       activity_level: this.user_to_insert.exercise,
       weight: this.user_to_insert.weight,
-      hip_circumference: this.user_to_insert.hip,
-      waist_circumference: this.user_to_insert.waist,
+      hip_circumference: this.user_to_insert.hip_circumference,
+      waist_circumference: this.user_to_insert.waist_circumference,
       height: this.user_to_insert.height,
       gender: this.user_to_insert.gender,
       bmi: this.user_to_insert.bmi,
@@ -514,32 +414,6 @@ export class RegisterFormComponent implements OnInit {
     };
   }
 
-  /*  setValuesToUserToInsert() {
-    // Hacer la primera petición para obtener los datos del usuario
-    this.measure_service.fetchMeasures(
-      this.getProcessedData(this.user_to_insert, 'user')
-    );
-  
-    // Obtener los datos del usuario
-    this.measure_service.getData().subscribe((userData: any) => {
-      // Establecer los datos del usuario
-      this.setDataToUser(userData, 'user');
-  
-      // Hacer la segunda petición para obtener los datos del objetivo
-      this.measure_service.fetchMeasures(
-        this.getProcessedData(this.user_to_insert, 'target')
-      );
-  
-      // Obtener los datos del objetivo
-      this.measure_service.getData().subscribe((targetData: any) => {
-        // Establecer los datos del objetivo
-        this.setDataToUser(targetData, 'target');
-  
-        // Realizar cualquier acción necesaria con los datos del usuario y del objetivo
-        console.log(this.user_to_insert);
-      });
-    });
-  } */
 
   getProcessedData(data: any, type: string) {
     if (type == 'user')
@@ -574,24 +448,21 @@ export class RegisterFormComponent implements OnInit {
   setDataToUser(data: any, type: string) {
     const types: any = {
       user: {
-        bmi: data.bodyMassIndex?.value,
-        body_fat: data.bodyFatPercentage?.bmi.value,
-        daily_calories: data.totalDailyEnergyExpenditure?.bmi?.calories?.value,
-        metabolic_rate: data.basalMetabolicRate?.hb?.calories?.value,
-        leanBodyMass: data.leanBodyMass?.bmi?.value,
-        idealBodyWeight: data.idealBodyWeight?.devine?.metric?.value,
-        end_date: this.getProcessedDate(data.timeBeforeGoalWeight?.value),
+        bmi: data.bmi,
+        body_fat: data.body_fat,
+        daily_calories: data.daily_calories,
+        end_date: this.getProcessedDate(null),
         start_date: this.getProcessedDate(null),
       },
       target: {
-        target_bmi: data.bodyMassIndex?.value,
-        target_body_fat: data.bodyFatPercentage?.bmi?.value,
+        target_bmi: data.bmi,
+        target_body_fat: data.body_fat,
       },
     };
     this.user_to_insert = { ...this.user_to_insert, ...types[type] };
   }
 
-  emitEvent(){
-    this.onReponseSuccess.emit()
+  emitEvent() {
+    this.onReponseSuccess.emit();
   }
 }

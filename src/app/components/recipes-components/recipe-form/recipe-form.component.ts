@@ -24,6 +24,15 @@ export class RecipeFormComponent implements OnInit {
   mealControl!: FormControl;
   caloriesControl!: FormControl;
 
+ 
+  default_data : any = {
+    q: 'chicken',
+    diet: 'balanced',
+    mealType: 'Dinner',
+    calories: '400',
+    imageSize: 'THUMBNAIL'
+  };
+
   
   @Input() food_index_input!: string
   @Output() errorSearch: EventEmitter<any> = new EventEmitter<any>()
@@ -67,6 +76,8 @@ export class RecipeFormComponent implements OnInit {
       calories: this.caloriesControl
 
     });
+
+    this.searchRecipe(this.default_data)
   }
 
   sendData(): void {
