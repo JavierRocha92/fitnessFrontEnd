@@ -1,53 +1,77 @@
 <div class="layout">
     @if(user_on_demand){
-        <!-- LAYOUT MAIN CONTAINER -->
-   <div class="layout__main">
-    <section class="measures">
-        <div class="measures__charts">
-            <app-area [image_name] = '"bascula.png"' [set_initial_data] = 'true' [name] ='"measures"' [measures]='user_on_demand.historical_measurements' [bg_color] = '"red"' [uds] = '"Kg"' [type]='"Weight"'></app-area>
-            <app-area [image_name] = '"body.png"'  [name] ='"measures"' [measures]='user_on_demand.historical_measurements' [bg_color] = '"blue"' [uds] = '"cm"' [type]='"Waist_circumference"'></app-area>
-            <app-area [image_name] = '"muscle.png"'  [name] ='"measures"' [measures]='user_on_demand.historical_measurements' [bg_color] = '"green"' [uds] = '"cm"' [type]='"Hip_circumference"'></app-area>
+    <!-- LAYOUT MAIN CONTAINER -->
+    <div class="layout__main">
+        <section class="measures">
+            <div class="measures__charts">
+                <app-area [image_name]='"bascula.png"' [set_initial_data]='true' [name]='"measures"'
+                    [measures]='user_on_demand.historical_measurements' [bg_color]='"red"' [uds]='"Kg"'
+                    [type]='"Weight"'></app-area>
+                <app-area [image_name]='"body.png"' [name]='"measures"'
+                    [measures]='user_on_demand.historical_measurements' [bg_color]='"blue"' [uds]='"cm"'
+                    [type]='"Waist_circumference"'></app-area>
+                <app-area [image_name]='"muscle.png"' [name]='"measures"'
+                    [measures]='user_on_demand.historical_measurements' [bg_color]='"green"' [uds]='"cm"'
+                    [type]='"Hip_circumference"'></app-area>
+            </div>
+            <app-multi-area class="multi-area" [name]='"measures"'></app-multi-area>
+
+        </section>
+        <section class="measures">
+            <div class="measures__charts">
+                <app-area [image_name]='"bascula.png"' [set_initial_data]='true' [name]='"calories"'
+                    [measures]='user_on_demand.historical_bio_data' [bg_color]='"red"' [uds]='"Kg"'
+                    [type]='"Weight"'></app-area>
+                <app-area [image_name]='"arm.png"' [name]='"calories"' [measures]='user_on_demand.historical_bio_data'
+                    [bg_color]='"blue"' [uds]='"%"' [type]='"BMI"'></app-area>
+                <app-area [image_name]='"burn.png"' [name]='"calories"' [measures]='user_on_demand.historical_bio_data'
+                    [bg_color]='"green"' [uds]='"%"' [type]='"Body_fat"'></app-area>
+            </div>
+
+            <app-multi-area class="multi-area" [name]='"calories"'></app-multi-area>
+
+        </section>
+    </div>
+    <!-- ASIDE USER INFO -->
+    <aside class="layout__aside">
+        <div class="aside__top">
+
+            <div class="layout__buttons w-100 d-flex flex-column gap-3 justify-content-center m-3">
+                <app-modal [title]='"Enter your measures"' [button_text]='"Add new measures "'
+                    [form_to_show]='"measures"'></app-modal>
+
+                <button type="submit" (click)='changeVirtualUser()'>
+                    <span class="shadow"></span>
+                    <span class="edge"></span>
+                    <span class="front text"> Log out
+                        <i class="ms-3 fa-solid fa-power-off"></i>
+                    </span>
+                </button>
+            </div>
+            <div class="user">
+                <!-- <app-user-avatar [isButton] = 'false' [id] = 'user_on_demand.ID' [name] = 'user_on_demand.Name'></app-user-avatar> -->
+                <div class="avatar avatar--lg">
+                    <img class="avatar__image w-100 rounded-circle p-3"
+                        src='https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg'
+                        alt="">
+                    <!-- <h3 class="avatar__name">{{name}}</h3> -->
+                </div>
+            </div>
         </div>
-        <app-multi-area class="multi-area" [name] = '"measures"'></app-multi-area>
-        
-    </section>
-    <section class="measures">
-        <div class="measures__charts">
-            <app-area [image_name] = '"bascula.png"' [set_initial_data] = 'true' [name] ='"calories"' [measures]='user_on_demand.historical_bio_data' [bg_color] = '"red"' [uds] = '"Kg"' [type]='"Weight"'></app-area>
-            <app-area [image_name] = '"arm.png"' [name] ='"calories"' [measures]='user_on_demand.historical_bio_data' [bg_color] = '"blue"' [uds] = '"%"' [type]='"BMI"'></app-area>
-            <app-area [image_name] = '"burn.png"' [name] ='"calories"' [measures]='user_on_demand.historical_bio_data' [bg_color] = '"green"' [uds] = '"%"' [type]='"Body_fat"'></app-area>
+        <div class="aside__bottom">
+
+
+            <div class="radar">
+                <app-radar></app-radar>
+            </div>
+            <div class="comparision">
+                <app-avg-area></app-avg-area>
+            </div>
         </div>
-        
-        <app-multi-area class="multi-area" [name] = '"calories"'></app-multi-area>
-        
-    </section>
-   </div>
-   <!-- ASIDE USER INFO -->
-   <aside class="layout__aside">
-    <div class="layout__buttons w-100 border d-flex flex-column gap-3">
-        <app-modal [title] = '"Enter your measures"' [button_text] = '"Add new measures "' [form_to_show] = '"measures"'></app-modal>
-        
-        <button type="submit" (click) = 'changeVirtualUser()'>
-            <span class="shadow"></span>
-            <span class="edge"></span>
-            <span class="front text"> Log out
-                <i class="ms-3 fa-solid fa-power-off"></i>
-            </span>
-         </button>
-    </div>
-    <div class="user">
-        <app-user-avatar [isButton] = 'false' [id] = 'user_on_demand.ID' [name] = 'user_on_demand.Name'></app-user-avatar>
-    </div>
-    <div class="radar">
-        <app-radar></app-radar>
-    </div>
-    <div class="comparision">
-        <app-avg-area></app-avg-area>
-    </div>
-   </aside>
+    </aside>
 
     }
-  
+
 </div>
 
 <!-- [bio_data]='user_on_demand.historical_bio_data' -->

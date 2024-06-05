@@ -157,6 +157,8 @@ export class AreaComponent implements OnInit {
 
   setLastValue(series : any){
     this.last_value = series[series.length -1] + ' ' + this.uds
+    if(this.type != 'Weight' && this.name == 'calories')
+      this.last_value = this.last_value.slice(0, this.last_value.indexOf('.') + 2) + '%'
   }
 
   public setDatesData(): any {

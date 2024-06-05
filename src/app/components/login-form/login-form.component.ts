@@ -39,6 +39,7 @@ export class LoginFormComponent implements OnInit {
   isLoading: boolean = false;
   register: boolean = false;
   error_login : boolean = false
+  error_register : boolean = false
   server_login : boolean = false
 
   constructor(
@@ -103,13 +104,20 @@ export class LoginFormComponent implements OnInit {
             this.isLoading = false;
             this.error_login = false
             this.router.navigate(['/user-avatar']);
-            this.toast_service.success('User registered successfully')
+            if (post_route == 'register/')
+              this.toast_service.success('User registered successfully')
           }
           else{
             this.isLoading = false
+            console.log('esta es la response')
+            console.log(response)
+            if(response.code == 6000){
+              this.error_register = true
+              this.toast_service.info('User unregistered, email already exists')
+            }
             if(response.code == 2000){
               this.error_login = true
-              this.toast_service.info('User unregistered')
+              this.toast_service.info('User unlogged')
             }
           }
         },
@@ -128,5 +136,7 @@ export class LoginFormComponent implements OnInit {
   changeForm(): void {
     this.form.reset();
     this.register = !this.register;
+    this.error_login = false
+    this.error_register = false
   }
 }

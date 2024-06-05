@@ -13,12 +13,16 @@ import { CommonModule } from '@angular/common';
   templateUrl: './user-avatar.component.html',
   styleUrl: './user-avatar.component.css',
 })
-export class UserAvatarComponent{
-  @Input() id!: string;
-  @Input() name!: string;
+export class UserAvatarComponent implements OnInit{
+  @Input() virtual_user : any
   isLoading: boolean = false;
   user_id: string | null | undefined;
   @Input() isButton !: boolean 
+  weight : number = 0
+  goal : number = 0
+  bmi : number = 0
+  body_fat : number = 0
+  name : string = ''
 
   constructor(
     private router: Router,
@@ -28,14 +32,22 @@ export class UserAvatarComponent{
     private toast_service : ToastrService
   ) {}
 
- 
+ ngOnInit(): void {
+  console.log(this.virtual_user)
+
+     this.name = this.virtual_user.Name
+     this.goal = this.virtual_user.Goal
+     this.weight = this.virtual_user.historical_measurements[this.virtual_user.historical_measurements.length - 1].Weight
+     this.bmi = this.virtual_user.historical_bio_data[this.virtual_user.historical_bio_data.length - 1].BMI
+     this.body_fat = this.virtual_user.historical_bio_data[this.virtual_user.historical_bio_data.length - 1].Body_fat
+ }
 
   goToProfile() {
-    this.router.navigate([`/layout/${this.id}`]);
+    this.router.navigate([`/layout/${this.virtual_user.ID}`]);
   }
 
   deleteVirtualUser() {
-    this.sendData(this.id);
+    this.sendData(this.virtual_user.ID);
   }
 
   sendData(virtual_user_id: string) {

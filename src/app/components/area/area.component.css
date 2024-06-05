@@ -72,6 +72,29 @@
   transform: scale(1.08) translate(-1%);
 }
 
+/* responsive */
+@media screen and (min-width: 600px) {
+  .card{
+    width: 180px;
+    margin-top: 20px;
+  }
+}
+@media screen and (min-width: 1000px) {
+  .card h2{
+    display: none;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .card h2{
+    display: flex;
+  }
+  .card{
+    width: 250px;
+
+  }
+
+}
+
 
 
 

@@ -16261,6 +16261,7 @@ export class RecipesComponent implements OnInit {
   }
 
   searchRecipe(url: string): void {
+    this.isLoading = true
     this.recipe_service.fetchRecipe(null, url).subscribe(
       (data: any) => {
         const recipes = {
@@ -16270,10 +16271,12 @@ export class RecipesComponent implements OnInit {
         };
 
         this.recipe_service.saveRecipes(recipes);
+        this.isLoading = false
       },
       (error) => {
         console.log('request error');
         console.error(error);
+        this.isLoading = false
       }
     );
   }

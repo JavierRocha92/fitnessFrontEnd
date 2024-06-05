@@ -44,6 +44,7 @@ export class RecipeFormComponent implements OnInit {
   searchRecipe(form_data: FormData): void {
     this.recipe_service.fetchRecipe(form_data).subscribe(
       (data: any) => {
+        
       const recipes = {
         'recipes': data.hits,
         'next': data._links.next || false,

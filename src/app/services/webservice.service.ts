@@ -32,9 +32,11 @@ export class WebserviceService {
     /* Contruimos los encabezamos de la peticion HTTP si precisamos de autirozacion para la peticion*/
     let req_headers = {};
     const token = this.token_service.getToken();
+    
     req_headers = new HttpHeaders({
-      Authorization: token ? token : 'esto es un token',
+      Authorization: (token) ? token : '',
     });
+    
     // 'Authorization': `Bearer ${token}`,
     // if(this.isTokenRequired(route)){
     //   const token = this.token_service.getToken()

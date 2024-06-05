@@ -94,7 +94,7 @@ export class RecipesService {
   api_key = `&app_key=${api_keys.search_recipes.app_key}`;
   app_id = `&app_id=${api_keys.search_recipes.app_id}`;
   // url_api_base = 'https://api.edamam.com/api/rtype=public&q=chicken&'
-  url_api_base = 'https://api.edamam.com/api/recipes/v2?type=public&q=chicken&';
+  url_api_base = 'https://api.edamam.com/api/recipes/v2?type=public&';
 
   meal_planer_url : string = 'recipes'
 

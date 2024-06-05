@@ -1,11 +1,38 @@
-<div class="avatar avatar--lg" >
-  <img (click)='goToProfile()' class="avatar__image" src='https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg' alt="">
-  <h3 class="avatar__name">{{name}}</h3>
-  
-  <button type="submit" (click) = 'deleteVirtualUser()' [ngClass]="{'': isButton, 'd-none': !isButton}">
-    <span class="shadow"></span>
-    <span class="edge"></span>
-    <span class="front text"> Delete <i class="ms-2 fa-solid fa-trash"></i>
+
+
+<div class="card" (click) = 'goToProfile()'>
+  <div class="container">
+        <div class="avatar avatar--lg" >
+      <img class="avatar__image w-100 rounded-circle p-3" src='https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg' alt="">
+      <!-- <h3 class="avatar__name">{{name}}</h3> -->
+    </div>
+    
+  </div>
+
+  <div class="card-header">
+    <span>{{name}}</span>
+    <span>BMI {{bmi}} %</span>
+    <span>Body Fat {{body_fat}} %</span>
+  </div>
+
+  <span class="temp">{{weight}} kg</span>
+
+  <div class="temp-scale">
+    <span>
+      @if(goal == 0){
+        Weight Loss
+      }
+      @if(goal == 1){
+        Gain Mass
+      }
     </span>
- </button>
+   
+    <button class="user__button" type="submit" (click)='deleteVirtualUser()'>
+      <span class="shadow"></span>
+      <span class="edge"></span>
+      <span class="front text"> Delete
+          <i class="ms-3 fa-solid fa-power-off"></i>
+      </span>
+    </button>
+  </div>
 </div>

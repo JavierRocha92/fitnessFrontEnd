@@ -3,7 +3,7 @@
     @if(isLoading){
         <app-loader></app-loader>
       }@else{
-    <div class="exercises__content">
+    <div class="exercises__content mt-3">
             @for(exercise of exercises;track exercise){
                 <app-exercise [exercise] = 'exercise'></app-exercise>
             }

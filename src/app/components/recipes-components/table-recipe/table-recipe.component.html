@@ -1,5 +1,11 @@
-<div  class="w-100">
+<!-- <div  class="w-100"> -->
     <!-- <img [title] = 'recipe.name' class="image" src={{recipe.image}} alt=""> -->
-    <p [title] = 'recipe.name' class="name">{{recipe.name.slice(0,30)}}...</p>
-    <button (click) = 'removeItem()' class="btn bg-danger text-light w-100">Delete</button>
-</div>
+    
+    
+<!-- </div> -->
+<div class="card d-flex align-items-center">
+    <div class="card-body" (click) = 'removeItem()'>
+        <p [title] = 'recipe.name' class="name">{{recipe.name.slice(0,30)}}...</p>
+        <!-- <button (click) = 'removeItem()' class="btn bg-danger text-light w-100">Delete</button> -->
+    </div>
+  </div>

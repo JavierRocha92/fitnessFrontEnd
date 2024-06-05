@@ -2,9 +2,9 @@
     <!-- <button (click)='logOut()'>Log Out</button> -->
     @if(virtual_users && virtual_users.length){
     <h1>Estos son tus usuarios virtuales</h1>
-    <div class="virtual-users__container">
+    <div class="virtual-users__container d-flex flex-wrap gap-5 p-5">
         @for(virtual_user of virtual_users; track virtual_user.ID;){
-        <app-user-avatar [isButton] = 'true' [id]='virtual_user.ID' [name]='virtual_user.Name'></app-user-avatar>
+        <app-user-avatar [virtual_user]='virtual_user'></app-user-avatar>
         }
     </div>
     }@else{
@@ -14,5 +14,6 @@
     @if(virtual_users && virtual_users.length < 4){
         <app-modal  [button_text] = '"Add new profile "' [form_to_show] = '"profile"'></app-modal>
     }
+    <app-slider class="w-100" [images] = '["bascula.png","body.png", "burn.png"]'></app-slider>
 
 </div>

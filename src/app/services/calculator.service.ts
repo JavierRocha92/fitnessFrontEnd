@@ -22,11 +22,8 @@ export class CalculatorService {
 
   getCaloriesBurned(exercise: Exercise): Observable<any> {
     const headers = this.getHeader()
-
     const url = this.url_request + exercise.name
-
     return this.http.get(url, { headers });
-
   }
 
   getHeader(): HttpHeaders {

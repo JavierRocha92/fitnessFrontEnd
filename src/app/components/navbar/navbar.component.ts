@@ -24,9 +24,7 @@ export class NavbarComponent implements OnInit {
     });
 
     this.user_service.userLoggedStatus().subscribe((data : any) => {
-      /* No susbcribimos cuando se logee un usuario fisico y cogemos los datos de este para poner la variable 
-      is active a true */
-      this.isUserActive = (this.user_service.getUserData()) ? true : false
+      this.isUserActive = data
     })
   }
 

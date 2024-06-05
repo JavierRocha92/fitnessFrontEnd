@@ -4,11 +4,12 @@ import { UsersService } from '../../services/users.service';
 import { UserAvatarComponent } from '../user-avatar/user-avatar.component';
 import { Router } from '@angular/router';
 import { ModalComponent } from '../modal/modal.component';
+import { SliderComponent } from '../slider/slider.component';
 
 @Component({
   selector: 'app-virutal-users-selection',
   standalone: true,
-  imports: [UserAvatarComponent, ModalComponent],
+  imports: [UserAvatarComponent, ModalComponent, SliderComponent],
   templateUrl: './virutal-users-selection.component.html',
   styleUrl: './virutal-users-selection.component.css',
 })

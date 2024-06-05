@@ -1,3 +1,32 @@
-<div class="main">
-    <app-login-form></app-login-form>
+<div class="main w-100 d-flex flex-column align-items-center  p-5 border">
+    <div class="visor position-relative w-100 border p-5 row align-items-center justify-content-center">
+        @if(!user_active){
+
+            <app-login-form class=" d-flex justify-content-center col-lg-6"></app-login-form>
+        }
+        <h1 class="text-light col-lg-6">Unleash your potential, one rep at a time. Get fit, feel great!</h1>
+    </div>
+    <h2 class="p-5">Empower your health journey: track, plan, and exercise with our tools.</h2>
+    <div class="cards w-100 d-flex flex-wrap justify-content-center gap-2 mt-3">
+        <app-home-card
+         [title] = '"Data comparision"'
+         [content] = '"Track your body data with graphs: measurements, weight, and more, to optimize health and reach your fitness goals efficiently."'
+         [image_name] = '"layout.png"'
+         ></app-home-card>
+        <app-home-card
+         [title] = '"Food calculator"'
+         [content] = '"Effortlessly track your nutrition with a food calculator: analyze intake, balance macros, and make informed dietary choices for optimal health."'
+         [image_name] = '"food-calculator.png"'
+         ></app-home-card>
+        <app-home-card
+         [title] = '"Meal planner"'
+         [content] = '"Streamline meal planning with a planner: organize recipes, balance nutrients, and simplify grocery lists for healthier, stress-free eating."'
+         [image_name] = '"meal-planner.png"'
+         ></app-home-card>
+        <app-home-card
+         [title] = '"workout tutorial"'
+         [content] = '"Transform your workouts with an exercise tutorial: step-by-step guides, proper form tips, and tailored routines for effective, safe training."'
+         [image_name] = '"exercises.png"'
+         ></app-home-card>
+    </div>
 </div>

@@ -1,0 +1,9 @@
+:host{
+    width: 100%;
+}
+.visor{
+    background-image: url('../../../assets/images/index__bg.avif');
+    background-color: #414141;
+    background-repeat: no-repeat;
+    background-size: cover;
+}

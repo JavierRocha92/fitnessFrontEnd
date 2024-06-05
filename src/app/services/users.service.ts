@@ -112,6 +112,7 @@ export class UsersService {
     this.updateVirtualUserLoggedStatus(false)
     this.updateUserLoggedStatus(false)
     this.router.navigate(['/'])
+    
   }
 
   updateLocalStorageData(){

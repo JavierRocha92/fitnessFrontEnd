@@ -2,7 +2,7 @@
     <table class="table w-100">
       <thead>
         <tr>
-          <th scope="col">DAy</th>
+          <th scope="col">Day</th>
           <th scope="col">Breakfast</th>
           <th scope="col">Snack</th>
           <th scope="col">Lunch</th>
@@ -19,35 +19,65 @@
   
           <td>
             @if(isEmpty(day.meals.breakfast)){
-            <button class="bg-success text-light" (click)='addDietToPlanner("breakfast", day.day)'> Add new recipe</button>
+              <div class="card d-flex align-items-center">
+                <div class="card-body ">
+                    <!-- <button (click) = 'removeItem()' class="btn bg-danger text-light w-100">Delete</button> -->
+                    <!-- <p class="name">No recipes yet.</p> -->
+                    <button class="btn bg-success text-light w-100" (click)='addDietToPlanner("breakfast", day.day)'> Add recipe</button>
+                </div>
+              </div>
             }@else {
             <app-table-recipe [recipe_type] = '"breakfast"' [meal_planner_day] = 'day.day' [recipe]='day.meals.breakfast'></app-table-recipe>
             }
           </td>
           <td>
             @if(isEmpty(day.meals.snack)){
-            <button class="bg-success text-light" (click)='addDietToPlanner("snack", day.day)'> Add new recipe</button>
+              <div class="card d-flex align-items-center">
+                <div class="card-body ">
+                    <!-- <button (click) = 'removeItem()' class="btn bg-danger text-light w-100">Delete</button> -->
+                    <!-- <p class="name">No recipes yet.</p> -->
+                    <button class="btn bg-success text-light w-100" (click)='addDietToPlanner("snack", day.day)'> Add recipe</button>
+                </div>
+              </div>
             }@else {
             <app-table-recipe [recipe_type] = '"snack"' [meal_planner_day] = 'day.day' [recipe]='day.meals.snack'></app-table-recipe>
             }
           </td>
           <td>
             @if(isEmpty(day.meals.lunch)){
-            <button class="bg-success text-light" (click)='addDietToPlanner("lunch", day.day)'> Add new recipe</button>
+              <div class="card d-flex align-items-center">
+                <div class="card-body ">
+                    <!-- <button (click) = 'removeItem()' class="btn bg-danger text-light w-100">Delete</button> -->
+                    <!-- <p class="name">No recipes yet.</p> -->
+                    <button class="btn bg-success text-light w-100" (click)='addDietToPlanner("lunch", day.day)'> Add recipe</button>
+                </div>
+              </div>
             }@else {
             <app-table-recipe [recipe_type] = '"lunch"' [meal_planner_day] = 'day.day' [recipe]='day.meals.lunch'></app-table-recipe>
             }
           </td>
           <td>
             @if(isEmpty(day.meals.tea_time)){
-            <button class="bg-success text-light" (click)='addDietToPlanner("tea_time", day.day)'> Add new recipe</button>
+              <div class="card d-flex align-items-center">
+                <div class="card-body ">
+                    <!-- <button (click) = 'removeItem()' class="btn bg-danger text-light w-100">Delete</button> -->
+                    <!-- <p class="name">No recipes yet.</p> -->
+                    <button class="btn bg-success text-light w-100" (click)='addDietToPlanner("tea_time", day.day)'> Add recipe</button>
+                </div>
+              </div>
             }@else {
             <app-table-recipe [recipe_type] = '"tea_time"' [meal_planner_day] = 'day.day' [recipe]='day.meals.tea_time'></app-table-recipe>
             }
           </td>
           <td>
             @if(isEmpty(day.meals.dinner)){
-            <button class="bg-success text-light" (click)='addDietToPlanner("dinner", day.day)'> Add new recipe</button>
+              <div class="card d-flex align-items-center">
+                <div class="card-body ">
+                    <!-- <button (click) = 'removeItem()' class="btn bg-danger text-light w-100">Delete</button> -->
+                    <!-- <p class="name">No recipes yet.</p> -->
+                    <button class="btn bg-success text-light w-100" (click)='addDietToPlanner("dinner", day.day)'> Add recipe</button>
+                </div>
+              </div>
             }@else {
             <app-table-recipe [recipe_type] = '"dinner"' [meal_planner_day] = 'day.day' [recipe]='day.meals.dinner'></app-table-recipe>
             }

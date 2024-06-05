@@ -1,10 +1,13 @@
-<form [formGroup]='form' [ngClass]="register ? 'form form--register' : 'form'" (ngSubmit)='checkForm()'>
+<form [formGroup]='form' class='form' (ngSubmit)='checkForm()'>
 
+    @if(error_login){
+        <p class="error">User / pass invalid</p>
+    }
+    @if(error_register){
+        <p class="error">User already registered</p>
+    }
     <div [ngClass]="register ? 'form__content form__content--register' : 'form__content'">
         <!-- first and last name container -->
-        @if(error_login){
-            <p class="error">Usuario y/o contraseña con incorrectos</p>
-        }
 
         @if(register){
         <div class="form__section">
@@ -93,7 +96,7 @@
                 <input [formControl]='emailControl' type="text" class="input" placeholder="Enter your Email">
             </div>
             
-            <p>javier&#64;gmail.com</p>
+            <!-- <p>javier&#64;gmail.com</p> -->
 
 
             <div class="flex-column">
@@ -133,7 +136,7 @@
                     </path>
                 </svg>
             </div>
-            <p>12345678</p>
+            <!-- <p>12345678</p> -->
 
         </div>
     </div>
