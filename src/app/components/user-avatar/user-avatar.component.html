@@ -1,7 +1,7 @@
 
 
-<div class="card" (click) = 'goToProfile()'>
-  <div class="container">
+<div class="card">
+  <div (click) = 'goToProfile()' class="container">
         <div class="avatar avatar--lg" >
       <img class="avatar__image w-100 rounded-circle p-3" src='https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg' alt="">
       <!-- <h3 class="avatar__name">{{name}}</h3> -->
@@ -9,7 +9,7 @@
     
   </div>
 
-  <div class="card-header">
+  <div (click) = 'goToProfile()' class="card-header">
     <span>{{name}}</span>
     <span>BMI {{bmi}} %</span>
     <span>Body Fat {{body_fat}} %</span>
@@ -27,12 +27,6 @@
       }
     </span>
    
-    <button class="user__button" type="submit" (click)='deleteVirtualUser()'>
-      <span class="shadow"></span>
-      <span class="edge"></span>
-      <span class="front text"> Delete
-          <i class="ms-3 fa-solid fa-power-off"></i>
-      </span>
-    </button>
+    <app-modal-confirmation (onDeleteConfirmation) = 'deleteVirtualUser()' [virtual_user_id] = 'virtual_user_id' [virtual_user_name] = 'name'></app-modal-confirmation>
   </div>
 </div>

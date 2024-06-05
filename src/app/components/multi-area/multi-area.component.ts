@@ -35,7 +35,7 @@ import { UsersService } from '../../services/users.service';
   templateUrl: './multi-area.component.html',
   styleUrl: './multi-area.component.css',
 })
-export class MultiAreaComponent implements OnInit, AfterViewInit {
+export class MultiAreaComponent implements OnInit {
   user_on_demand: any;
   series: any[] = [];
   @Input() name!: string;
@@ -87,7 +87,7 @@ export class MultiAreaComponent implements OnInit, AfterViewInit {
     };
   }
 
-  ngAfterViewInit(): void {}
+ 
 
   ngOnInit(): void {
     this.user_on_demand = this.user_service.getVirtualUserOnOFocus();

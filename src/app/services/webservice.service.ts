@@ -30,23 +30,26 @@ export class WebserviceService {
     let url_request = this.server_url + route;
 
     /* Contruimos los encabezamos de la peticion HTTP si precisamos de autirozacion para la peticion*/
-    let req_headers = {};
+    
     const token = this.token_service.getToken();
     
-    req_headers = new HttpHeaders({
-      Authorization: (token) ? token : '',
-    });
+   const req_headers = new HttpHeaders({
+    Authorization : token ?? ''
+   })
+
     
-    // 'Authorization': `Bearer ${token}`,
+    
     // if(this.isTokenRequired(route)){
     //   const token = this.token_service.getToken()
     //   console.log('este es el token')
     //   console.log(token)
-    //   headers = new HttpHeaders({
-    //     'Authorization': token ? `Bearer ${token}` : '',
-    //     // 'Authorization': `Bearer ${token}`,
+    //   req_headers = new HttpHeaders({
+    //     Authorization:  `Bearer ${token ?? 'este es el token'}`,
+    //     // 'Authorization': `hola mundo`,
     //   });
     // }
+    console.log('este es el headers')
+    console.log(req_headers)
 
     /* Realizamos la peticion post */
     this.http

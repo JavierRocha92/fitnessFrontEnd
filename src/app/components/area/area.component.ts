@@ -1,4 +1,4 @@
-import { Component, ViewChild, Input, OnInit } from '@angular/core';
+import { Component, ViewChild, Input, OnInit, AfterViewInit } from '@angular/core';
 import { Measures, BioDatas } from '../../types/measures';
 
 import {
@@ -31,7 +31,7 @@ export type ChartOptions = {
   templateUrl: './area.component.html',
   styleUrl: './area.component.css',
 })
-export class AreaComponent implements OnInit {
+export class AreaComponent implements OnInit, AfterViewInit {
   @Input() uds!: string;
   @Input() set_initial_data : boolean | undefined;
   @Input() bg_color!: string;
@@ -46,12 +46,18 @@ export class AreaComponent implements OnInit {
   last_value : string | undefined
   @Input() image_name !: string
   constructor(private chart_service: ChartSeriesServiceService) {}
+  ngAfterViewInit(): void {
+    
+    // this.setInitialData()
+    
+  }
   ngOnInit(): void {
     // this.image_path = this.image_path
     this.image_path = this.image_path + this.image_name 
     this.series = this.setSeriesData();
     this.dates = this.setDatesData();
     this.setInitialData()
+    
     this.chartOptions = {
       series: [
         {
@@ -178,8 +184,10 @@ export class AreaComponent implements OnInit {
   }
   
   public setInitialData(){
-    if(this.set_initial_data)
+    if(this.set_initial_data){
+      
       this.chart_service.addNewSeries(this.asJson());
+    }
 
   }
 

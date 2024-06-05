@@ -12,6 +12,7 @@ export class TokenService {
 
   getToken(): string | null {
     const token = localStorage.getItem('user_token');
+
     if (token) {
       return token;
     } else {

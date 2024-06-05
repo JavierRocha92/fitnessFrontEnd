@@ -5,18 +5,19 @@ import { UsersService } from '../../services/users.service';
 import { WebserviceService } from '../../services/webservice.service';
 import { ToastrService } from 'ngx-toastr';
 import { CommonModule } from '@angular/common';
+import { ModalConfirmationComponent } from '../modal-confirmation/modal-confirmation.component';
 
 @Component({
   selector: 'app-user-avatar',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ModalConfirmationComponent],
   templateUrl: './user-avatar.component.html',
   styleUrl: './user-avatar.component.css',
 })
 export class UserAvatarComponent implements OnInit{
   @Input() virtual_user : any
   isLoading: boolean = false;
-  user_id: string | null | undefined;
+  virtual_user_id: string | null | undefined;
   @Input() isButton !: boolean 
   weight : number = 0
   goal : number = 0
@@ -50,16 +51,16 @@ export class UserAvatarComponent implements OnInit{
     this.sendData(this.virtual_user.ID);
   }
 
-  sendData(virtual_user_id: string) {
-    this.user_id = this.user_service.getUserData()?.ID;
-    const data = { virtual_user_id: virtual_user_id };
+  sendData(virtual_virtual_user_id: string) {
+    this.virtual_user_id = this.user_service.getUserData()?.ID;
+    const data = { virtual_virtual_user_id: virtual_virtual_user_id };
     this.isLoading = true;
     console.log(`estoy cargando ${this.isLoading}`);
 
     return new Promise(async (resolve, reject) => {
       this.web_service.delete(
         '/register/virtual',
-        [this.user_id, virtual_user_id],
+        [this.virtual_user_id, virtual_virtual_user_id],
         (response: any) => {
           resolve(response);
           if (response.success) {
