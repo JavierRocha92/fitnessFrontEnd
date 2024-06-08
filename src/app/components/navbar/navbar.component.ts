@@ -17,16 +17,23 @@ export class NavbarComponent implements OnInit {
   constructor(private user_service: UsersService, private router: Router) {}
 
   ngOnInit(): void {
+
+    
     this.user_service.virtualUserLoggedStatus().subscribe((data: any) => {
       const user_on_demand = this.user_service.getVirtualUserOnOFocus();
       this.virtual_user_on_demand_id = user_on_demand ? user_on_demand.ID : undefined;
-     
-    });
+      
+      });
+      
+      this.user_service.userLoggedStatus().subscribe((data : any) => {
+        this.isUserActive = data
+        })
+        
+        this.setUserActive()
+  }
 
-    this.user_service.userLoggedStatus().subscribe((data : any) => {
-      this.isUserActive = data
-    })
-
+  setUserActive(){
+    this.isUserActive = (this.user_service.getUserData()) ? true : false
   }
 
   logOut() {

@@ -53,32 +53,32 @@ export class AvgAreaComponent implements OnInit {
       stroke: {
         curve: 'smooth',
       },
+      
       xaxis: {
-        categories : [],
-        show: false 
+        categories: [],
+        labels: {
+          show: true // Oculta las etiquetas del eje X
+        }
       },
       yaxis: {
         show: false 
       },
-      
-      
+     
       annotations: {
         points: [
           {
             x: '',
             y: '',
             marker: {
-              size: 6,
+              size: 10,
               borderColor: '#FF4560',
-              colors : '#FF4560'
+              colors: ['#FF4560']
             },
-            labels : {
-              text : 'you'
-            }
-            
-          },
-        ],
-      },
+          
+          }
+        ]
+      }
+      
      
     };
   }
