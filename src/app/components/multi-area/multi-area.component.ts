@@ -35,7 +35,7 @@ import { UsersService } from '../../services/users.service';
   templateUrl: './multi-area.component.html',
   styleUrl: './multi-area.component.css',
 })
-export class MultiAreaComponent implements OnInit {
+export class MultiAreaComponent implements OnInit, AfterViewInit {
   user_on_demand: any;
   series: any[] = [];
   @Input() name!: string;
@@ -50,15 +50,23 @@ export class MultiAreaComponent implements OnInit {
     this.chartOptions = {
       series: [],
       chart: {
-        width: '100%',
+        // width: '800px',
         type: 'area',
       },
       legend: {
+        position: 'bottom',  // Posición de la leyenda (top, bottom, left, right)
+        fontSize: '16px',
+        fontFamily: 'Helvetica, Arial',
         labels: {
-          colors: 'white',
+            colors: ['white', 'white','white'],  // Cambiar el color de la leyenda
+            useSeriesColors: false  // Usar colores de la serie para la leyenda
         },
+        itemMargin: {
+          horizontal: 10,  // Margen horizontal entre las etiquetas de la leyenda
+          vertical: 20  // Margen vertical entre las etiquetas de la leyenda
       },
-
+      offsetY: 20  // Desplazamiento vertical de la leyenda
+    },
       dataLabels: {
         style: {
           colors: ['green'], // Color de las etiquetas de datos
@@ -87,7 +95,9 @@ export class MultiAreaComponent implements OnInit {
     };
   }
 
- 
+ ngAfterViewInit(): void {
+    // this.chartOptions.chart.width = '800px'
+ }
 
   ngOnInit(): void {
     this.user_on_demand = this.user_service.getVirtualUserOnOFocus();
@@ -98,6 +108,8 @@ export class MultiAreaComponent implements OnInit {
       this.chartOptions.xaxis.categories = this.setDatesData();
     });
   }
+
+  
 
   public setSeriesData() {
     return this.series.map((serie: any) => {

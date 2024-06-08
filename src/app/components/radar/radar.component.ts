@@ -91,6 +91,13 @@ export class RadarComponent implements AfterViewInit {
       xaxis: {
         categories: [],
         // categories: ['Weight', 'Hip', 'Waist', 'Weight', 'BMI', 'Fat'],
+        labels: {
+          style: {
+              colors: ['white', 'white', 'white', 'white', 'white', 'white'],
+              fontSize: '14px',
+              fontFamily: 'Helvetica, Arial, sans-serif',
+          }
+      }
       },
       yaxis: {
         tickAmount: 6,
@@ -122,7 +129,7 @@ export class RadarComponent implements AfterViewInit {
 
     this.chartOptions.xaxis.categories = type_names.map((type : string) => {
       const prop_name = `Target_${type.toLowerCase()}`
-      return type + ' ' + virtual_user[prop_name]
+      return type.slice(0, type.indexOf('_')) + ' ' + virtual_user[prop_name]
     })
 
   }

@@ -24,6 +24,9 @@
 
 .layout__main{
     grid-area: main;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 .multi-area {
@@ -32,7 +35,19 @@
     justify-content: center;
     
 }
+.aside__top{
+    display: flex;
+    align-items: center;
+}
 
+.user{
+    /* border: 2px solid black; */
+    /* width: 100%; */
+}
+
+.avatar, .avatar__image{
+    width: 100%;
+}
   .button-out {
     /* margin: 20px 0 10px 0; */
     background-color: #cd1818a8;
@@ -200,6 +215,9 @@
   }
 
   @media screen and (min-width: 1000px) {
+    .layout__main{
+        gap: 20px;
+    }
     .measures{
         display: flex;
         flex-direction: row-reverse;
@@ -260,6 +278,7 @@
         width: 100%;
     }
     .user{
-        width: 100%;
+        width: 50%;
     }
+    
   }

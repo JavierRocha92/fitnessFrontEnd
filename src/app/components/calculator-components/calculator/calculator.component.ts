@@ -7,10 +7,11 @@ import { CommonModule } from '@angular/common';
 import { Food, FoodMeasures } from '../../../types/food';
 import { FloatComponentComponent } from '../float-component/float-component.component';
 import { UsersService } from '../../../services/users.service';
+import { LoaderComponent } from '../../loader/loader.component';
 @Component({
   selector: 'app-calculator',
   standalone : true,
-  imports: [FoodFormComponent, FoodInfoComponent, CommonModule, FloatComponentComponent],
+  imports: [FoodFormComponent, FoodInfoComponent, CommonModule, FloatComponentComponent, LoaderComponent],
   templateUrl: './calculator.component.html',
   styleUrl: './calculator.component.css'
 })
@@ -20,6 +21,7 @@ export class CalculatorComponent implements OnInit {
   totals : any = {};
   isDisabled = true
   first_subcription : boolean = true
+  isLoading : boolean = false
 
   constructor(private food_service: FoodsService, private user_service : UsersService) { }
 
@@ -37,9 +39,11 @@ export class CalculatorComponent implements OnInit {
 
   ngOnInit(): void {
     this.user_service.checkSession()
+    this.isLoading = false
     this.food_service.getRealFoodData().subscribe((data : any) => {
       this.food_data = data
       this.processTotal()
+      this.isLoading = true
       if(!this.first_subcription){
         this.isDisabled = false
       }else{

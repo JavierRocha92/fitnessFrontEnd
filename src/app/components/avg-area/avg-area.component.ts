@@ -36,6 +36,7 @@ export class AvgAreaComponent implements OnInit {
   user_yaxis_value : any
   avg_data : any
   user_on_demand : any
+  avg_weight : number = 0;
   constructor(private user_service: UsersService) {
     this.chartOptions = {
       series: [],
@@ -78,6 +79,7 @@ export class AvgAreaComponent implements OnInit {
           },
         ],
       },
+     
     };
   }
 
@@ -90,6 +92,11 @@ export class AvgAreaComponent implements OnInit {
     const avg_sorted_data = this.avg_data
       .flatMap((data: any) => data.weight)
       .sort((a: any, b: any) => a + b);
+
+    const sum_weight = avg_sorted_data.reduce((acc : number, weight : number) => acc += weight, 0) 
+
+    
+    this.avg_weight = sum_weight / avg_sorted_data.length
       
     const processed_data = this.getProcessedData(avg_sorted_data) 
    

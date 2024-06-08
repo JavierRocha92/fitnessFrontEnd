@@ -17,8 +17,8 @@ export class FloatComponentComponent implements OnChanges {
     if(changes['items'])
       this.items_array = Object.entries(this.items)
     
-  
   }
+  
 
 
 }

@@ -277,7 +277,7 @@ export class RecipesService {
   setRecipeOnChangeAsJson(recipe_on_change: any) {
     this.recipe_on_change = {
       name: recipe_on_change.label,
-      // image: recipe_on_change.image,
+      image: recipe_on_change.image,
       calories: (recipe_on_change.calories / recipe_on_change.yield).toFixed(),
     };
   }

@@ -20,7 +20,6 @@ ngOnInit(): void {
 
 }
 removeItem(){
-  console.log('borro una receta')
   this.recipe_service.removeRecipeFromPlanner(this.meal_planner_day, this.recipe_type)
 }
 

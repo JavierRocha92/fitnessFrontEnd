@@ -2,28 +2,44 @@
     <table class="table w-100">
       <thead>
         <tr>
-          <th scope="col">Day</th>
-          <th scope="col">Breakfast</th>
-          <th scope="col">Snack</th>
-          <th scope="col">Lunch</th>
-          <th scope="col">Tea Time</th>
-          <th scope="col">Dinner</th>
-          <th scope="col">KCal</th>
+          <th class="td-day mt-3" scope="col"><p>
+            Day
+          </p></th>
+          <th class="mt-3" scope="col"><p>
+            Breakfast
+          </p></th>
+          <th class="mt-3" scope="col"><p>
+            Snack
+          </p></th>
+          <th class="mt-3" scope="col"><p>
+            Lunch
+          </p></th>
+          <th class="mt-3" scope="col"><p>
+            Tea Time
+          </p></th>
+          <th class="mt-3" scope="col"><p>
+            Dinner
+          </p></th>
+          <th class="mt-3" scope="col"><p>
+            KCal
+          </p></th>
   
         </tr>
       </thead>
       <tbody>
         @for(day of meal_planner; track day.day){
         <tr>
-          <td><strong>{{ day.day }}</strong></td>
+          <td class="td-day">
+            <p class="text-center fw-bold mt-3 fs-5 day">
+              {{ day.day }}
+
+            </p>
+          </td>
   
           <td>
             @if(isEmpty(day.meals.breakfast)){
-              <div class="card d-flex align-items-center">
+              <div class="card card--noitem d-flex align-items-center" (click)='addDietToPlanner("breakfast", day.day)'>
                 <div class="card-body ">
-                    <!-- <button (click) = 'removeItem()' class="btn bg-danger text-light w-100">Delete</button> -->
-                    <!-- <p class="name">No recipes yet.</p> -->
-                    <button class="btn bg-success text-light w-100" (click)='addDietToPlanner("breakfast", day.day)'> Add recipe</button>
                 </div>
               </div>
             }@else {
@@ -32,11 +48,8 @@
           </td>
           <td>
             @if(isEmpty(day.meals.snack)){
-              <div class="card d-flex align-items-center">
+              <div class="card card--noitem d-flex align-items-center" (click)='addDietToPlanner("snack", day.day)'>
                 <div class="card-body ">
-                    <!-- <button (click) = 'removeItem()' class="btn bg-danger text-light w-100">Delete</button> -->
-                    <!-- <p class="name">No recipes yet.</p> -->
-                    <button class="btn bg-success text-light w-100" (click)='addDietToPlanner("snack", day.day)'> Add recipe</button>
                 </div>
               </div>
             }@else {
@@ -45,11 +58,8 @@
           </td>
           <td>
             @if(isEmpty(day.meals.lunch)){
-              <div class="card d-flex align-items-center">
+              <div class="card card--noitem d-flex align-items-center" (click)='addDietToPlanner("lunch", day.day)'>
                 <div class="card-body ">
-                    <!-- <button (click) = 'removeItem()' class="btn bg-danger text-light w-100">Delete</button> -->
-                    <!-- <p class="name">No recipes yet.</p> -->
-                    <button class="btn bg-success text-light w-100" (click)='addDietToPlanner("lunch", day.day)'> Add recipe</button>
                 </div>
               </div>
             }@else {
@@ -58,11 +68,8 @@
           </td>
           <td>
             @if(isEmpty(day.meals.tea_time)){
-              <div class="card d-flex align-items-center">
+              <div class="card card--noitem d-flex align-items-center" (click)='addDietToPlanner("tea_time", day.day)'>
                 <div class="card-body ">
-                    <!-- <button (click) = 'removeItem()' class="btn bg-danger text-light w-100">Delete</button> -->
-                    <!-- <p class="name">No recipes yet.</p> -->
-                    <button class="btn bg-success text-light w-100" (click)='addDietToPlanner("tea_time", day.day)'> Add recipe</button>
                 </div>
               </div>
             }@else {
@@ -71,19 +78,19 @@
           </td>
           <td>
             @if(isEmpty(day.meals.dinner)){
-              <div class="card d-flex align-items-center">
+              <div class="card card--noitem d-flex align-items-center" (click)='addDietToPlanner("dinner", day.day)'>
                 <div class="card-body ">
-                    <!-- <button (click) = 'removeItem()' class="btn bg-danger text-light w-100">Delete</button> -->
-                    <!-- <p class="name">No recipes yet.</p> -->
-                    <button class="btn bg-success text-light w-100" (click)='addDietToPlanner("dinner", day.day)'> Add recipe</button>
                 </div>
               </div>
             }@else {
             <app-table-recipe [recipe_type] = '"dinner"' [meal_planner_day] = 'day.day' [recipe]='day.meals.dinner'></app-table-recipe>
             }
           </td>
-          <td>
-            {{day.calories}}
+          <td >
+            <p class="text-center mt-4 fs-4 fw-bold">
+
+              {{day.calories}} <span class="fw-semibold fs-6">Kcal</span>
+            </p>
           </td>
         </tr>
         }

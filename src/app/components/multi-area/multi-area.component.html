@@ -1,16 +1,15 @@
 <div class="card">
   <h2>Measures comparasion</h2>
-  <div class="pulse"></div>
   <div id="chart" class="chart-area">
     @if(series.length && series[0].series.length > 1){
-
       <apx-chart class="apx"
       [series]="chartOptions.series"
       [chart]="chartOptions.chart" 
       [xaxis]="chartOptions.xaxis"
       [stroke]="chartOptions.stroke" 
       [tooltip]="chartOptions.tooltip"
-      [dataLabels]="chartOptions.dataLabels">
+      [dataLabels]="chartOptions.dataLabels"
+      [legend] = 'chartOptions.legend'>
     </apx-chart>
   }@else{
     <h1 class="text-light p-3">Add new measures to view chart comparision</h1>

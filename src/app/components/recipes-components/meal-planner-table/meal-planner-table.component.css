@@ -1,11 +1,54 @@
+*{
+    border-radius: 1px;
+}
 td{
     width: 150px;
+    text-align: center;
+}
+th{
+    text-align: center;
 }
 .card{
     height: 80px;
-    box-shadow: 1px 1px 10px rgb(137, 216, 119);
+    box-shadow: 1px 1px 10px rgb(120, 144, 114);
     transition: all ease 0.2s;
 }
 .card:hover{
-    box-shadow: 1px 1px 10px rgb(0, 255, 13);
+    box-shadow: 1px 1px 10px rgb(81, 136, 84);
 }
+.card--noitem{
+    position: relative;
+}
+
+.card--noitem::after{
+    content: 'Add recipe';
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: balck;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    background-color: rgba(128, 128, 128, 0.258);
+    transition: all ease 0.3s;
+    font-weight: 500;
+    font-size: 1rem;
+}
+.card--noitem:hover::after{
+    background-color: rgba(128, 128, 128, 0.592);
+    font-size: 1.02rem;
+}
+
+/* @media screen and (min-width: 600px) {
+    .td-day{
+        width: 30px;
+        margin: 0;
+        padding: 0;
+        border: 2px solid black;
+        }
+        .day{
+        border: 2px solid black;
+        transform: rotate(-90deg);
+    }
+} */

@@ -1,17 +1,21 @@
-
 <div class="calculator">
-    <button type="submit" class="totals" (click) = 'showTotals()'>
+    <button type="submit" class="totals" (click)='showTotals()'>
         <span class="shadow"></span>
         <span class="edge"></span>
         <span class="front text"> Show totals
         </span>
     </button>
-    <div *ngFor="let food of foods;let i = index">
-        <app-food-form [food_index_input] = 'i' (removeFoodFromArray) = 'removeFood(i)'></app-food-form>
-        <app-food-info [food_index_input] = 'i'></app-food-info>
-    </div>
+    @if(isLoading){
 
-    <button type="submit" [disabled] = 'isDisabled' (click) = 'addFood()'>
+    <div *ngFor="let food of foods;let i = index">
+        <app-food-form [food_index_input]='i' (removeFoodFromArray)='removeFood(i)'></app-food-form>
+        <app-food-info [food_index_input]='i'></app-food-info>
+    </div>
+    }@else{
+    <app-loader></app-loader>
+    }
+
+    <button type="submit" [disabled]='isDisabled' (click)='addFood()'>
         <span class="shadow"></span>
         <span class="edge"></span>
         <span class="front text"> Add new food
@@ -19,5 +23,5 @@
     </button>
 
     <!-- <button >Añadir nuevo alimento</button> -->
-    <app-float-component id="float" class="none" [items] = 'totals'></app-float-component>
+    <app-float-component id="float" class="none" [items]='totals'></app-float-component>
 </div>

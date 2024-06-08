@@ -17,7 +17,7 @@
 
 .card {
   position: relative;
-  width: 100%;
+  /* width: 100%; */
   background: #414141;
   padding: 10px;
   border-radius: 24px;
@@ -37,7 +37,7 @@
 .card .chart-area {
   position: relative;
   border-radius: 20px;
-  width: 100%;
+  /* width: 100%; */
   position: relative;
   height: 350px;
   padding: 0;
@@ -58,7 +58,11 @@
     transform: scale(120%) translateY(-8%) translateX(1%);
   }
   .card{
+    width: 290px;
     height: 80%;
+  }
+  .card .chart-area{
+    width: 270px;
   }
   
 }
@@ -68,18 +72,26 @@
     transform: scale(120%) translateY(-8%) translateX(5%);
   }
   .card{
+    width: 400px;
     height: 80%;
   }
+  .card .chart-area{
+    width: 380px;
+  }
   
-}
-@media screen and (min-width: 1200px) {
+  }
+  @media screen and (min-width: 1200px) {
   .grid{
     transform: translateX(0) translateY(-8%);
-  }
-  
-  .card{
-    height: 80%;
-  }
+    }
+    
+    .card{
+      width: 350px;
+      height: 80%;
+    }
+    .card .chart-area{
+      width: 330px;
+    }
   
 }
 

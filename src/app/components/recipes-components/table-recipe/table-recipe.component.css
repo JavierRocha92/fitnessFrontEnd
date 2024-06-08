@@ -9,14 +9,56 @@
     height: 80px;
     box-shadow: 1px 1px 10px rgb(119, 119, 216);
     transition: all ease 0.2s;
+    /* position: relative; */
+    overflow: hidden;
 }
-.card:hover{
-    box-shadow: 1px 1px 10px rgb(216, 119, 119);
-
+.card::after{
+    content: 'Remove recipe';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    transition: all ease 0.3s;
+    background-color: rgba(128, 128, 128, 0.258);
+    
+}
+.card:hover::after{
+    background-color: rgba(128, 128, 128, 0.592);
+    top: 0;
+}
+.card-body{
+    position: relative !important;
+    width: 100%;
+    height: 100%;
+    top: 0%;
+    transition: all ease 0.3s;
+    overflow: hidden;
+}
+.card:hover .card-body{
+    top:-100%
 }
 
-.card, .card-body, button{
-    
-        cursor: url("https://img.icons8.com/?size=24&id=GRCWsi3ipKRQ&format=png"), auto;
-    
+.card__img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+}
+.card__title{
+    position: absolute;
+    color: black;
+    width: 100%;
+    height: 20%;
+    top: 50%;
+    left: 50%;
+    margin: 0;
+    padding: 0;
+    transform: translateX(-50%) translateY(-50%);
+    z-index: 1000;
 }

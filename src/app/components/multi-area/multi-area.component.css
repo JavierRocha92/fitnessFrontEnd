@@ -38,7 +38,6 @@
   position: relative;
   border: 1px solid white;
   border-radius: 20px;
-  width: 100%;
   position: relative;
   height: 600px;
   padding: 0;
@@ -57,20 +56,32 @@
       height: 400px;
       width: 550px;
     }
+    .card .chart-area{
+      width: 520px;
+    }
   }
 
 @media screen and (min-width: 1000px) {
  .card{
-   height: 500px;
+   height: 550px;
    width: 100%;
+ }
+ .card .chart-area{
+  width: 700px;
  }
 }
    
    @media screen and (min-width: 1200px) {
     .card{
-      height: 100%;
+      height: 90%;
       width: 100%;
     }
+
+    .card .chart-area{
+      width: 800px;
+    }
+    
+    
   }
 
 

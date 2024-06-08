@@ -13,8 +13,6 @@ export class ChartSeriesServiceService {
   }
 
   addNewSeries(serie_to_add: any): void {
-    console.log('esta es la serie que voy a añadir')
-    console.log(serie_to_add)
     
     // if (this.series.length > 1) {
     const index_of_data = this.series.findIndex(
@@ -23,8 +21,6 @@ export class ChartSeriesServiceService {
     );
     if (index_of_data === -1) this.series.push(serie_to_add);
     else if (this.series[index_of_data].type != 'Weight') {
-      console.log('entro para borrar esta elemento')
-      console.log(this.series[index_of_data])
       this.series.splice(index_of_data, 1);
     }
     

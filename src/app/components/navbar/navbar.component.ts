@@ -26,6 +26,7 @@ export class NavbarComponent implements OnInit {
     this.user_service.userLoggedStatus().subscribe((data : any) => {
       this.isUserActive = data
     })
+
   }
 
   logOut() {

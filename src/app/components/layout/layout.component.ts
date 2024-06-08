@@ -41,6 +41,7 @@ export class LayoutComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.user_service.checkSession()
     this.route.params.subscribe((params) => {
       this.virtual_user_id = params['id'];
       this.setVirtulUserData();

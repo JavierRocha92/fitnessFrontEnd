@@ -23,7 +23,6 @@ export class MealPlannerTableComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log('render del meal planner')
     this.user_on_demand = this.user_service.getVirtualUserOnOFocus();
     /* Llamar a una funcion para que obtenga el meal planner */
     this.recipes_service

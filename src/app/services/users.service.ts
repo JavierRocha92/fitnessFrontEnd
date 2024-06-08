@@ -127,6 +127,10 @@ export class UsersService {
     else 
     this.router.navigate(['/'])
   }
+  checkVirtualUserActive(){
+    if (!this.getVirtualUserOnOFocus())
+      this.router.navigate(['/user-avatar'])
+  }
   removeSeries(){
     const prefijos = ['measures', 'calories']
     for (var i = 0; i < localStorage.length; i++) {

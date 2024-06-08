@@ -5,12 +5,12 @@
     @if(user_on_demand && user_on_demand.historical_measurements.length > 1){
     <apx-chart class="grid" [series]="chartOptions.series" [chart]="chartOptions.chart" [xaxis]="chartOptions.xaxis"
       [yaxis]="chartOptions.yaxis" [stroke]="chartOptions.stroke" [tooltip]="chartOptions.tooltip"
-      [dataLabels]="chartOptions.dataLabels" [annotations]='chartOptions.annotations'>
+      [dataLabels]="chartOptions.dataLabels" [annotations]='chartOptions.annotations' >
     </apx-chart>
     }@else{
     <h2 class="text-light p-3">Add measurements to see comparision</h2>
     <app-modal [title] = '"Enter your measures"' [button_text] = '"Add new measures "' [form_to_show] = '"measures"'></app-modal>
-
-    }
-  </div>
+  }
+</div>
+<p class="text-light">Average user on app is over {{avg_weight.toFixed(1)}} Kg</p>
 </div>

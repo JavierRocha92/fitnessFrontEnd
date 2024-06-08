@@ -16181,6 +16181,7 @@ export class RecipesComponent implements OnInit {
 
   ngOnInit(): void {
     this.user_service.checkSession()
+    this.user_service.checkVirtualUserActive()
     this.recipe_service.newRecipeOnLocalStorage().subscribe(() => {
       
     });
@@ -16215,6 +16216,7 @@ export class RecipesComponent implements OnInit {
     this.next = data.next
     this.previous = data.previous
     this.error = false
+
     
   }
 

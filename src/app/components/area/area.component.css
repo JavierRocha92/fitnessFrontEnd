@@ -19,17 +19,28 @@
 
 .card {
   position: relative;
-  width: 250px;
+  width: 110% !important;
   background: #414141;
   padding: 10px;
   border-radius: 24px;
   box-shadow: 0 50px 100px rgba(0, 0, 0, 0.08);
+  height: 150px;
 }
 .card__image{
-  width: 70%;
+  width: 10%;
   background-color: rgb(238, 236, 236);
-
   border-radius: 24px;
+  /* border: 2px solid red; */
+  height: 100%;
+  transition: all ease 0.4s;
+}
+.card:hover .card__image{
+
+  background-color: white;
+}
+.card__image:hover{
+  background-color: white;
+
 }
 
 .card h2 {
@@ -51,7 +62,7 @@
   border-radius: 20px;
   width: 100%;
   position: relative;
-  height: 150px;
+  height: 80px;
   padding: 0;
   background-color: rgb(238, 236, 236);
   border-radius: 24px;
@@ -80,8 +91,9 @@
   }
 }
 @media screen and (min-width: 1000px) {
-  .card h2{
-    display: none;
+  
+  .card{
+    height: 150px;
   }
 }
 @media screen and (min-width: 1200px) {

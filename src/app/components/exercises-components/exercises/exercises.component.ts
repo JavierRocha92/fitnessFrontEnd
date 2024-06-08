@@ -27,9 +27,12 @@ export class ExercisesComponent implements OnInit{
     this.user_service.checkSession();
     this.isLoading = true
     // this.setDefaultData();
+    console.log('estoy cargando')
     this.calculator.getData().subscribe((data: any) => {
+      
       this.exercises = data
       this.isLoading= false
+      console.log('ya vargue')
     });
   }
 

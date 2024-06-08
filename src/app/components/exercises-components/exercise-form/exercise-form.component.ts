@@ -33,7 +33,7 @@ export class FormExerciseComponent {
     private router: Router,
     private calculator: CalculatorService
   ) {
-    this.sendData('cardio');
+    
   }
 
   ngOnInit(): void {
