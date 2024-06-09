@@ -109,15 +109,16 @@ export class LoginFormComponent implements OnInit {
           }
           else{
             this.isLoading = false
-            console.log('esta es la response')
-            console.log(response)
             if(response.code == 6000){
               this.error_register = true
+              if(this.register)
               this.toast_service.info('User unregistered, email already exists')
             }
             if(response.code == 2000){
-              this.error_login = true
-              this.toast_service.info('User unlogged')
+              if(!this.register){
+                this.error_login = true
+                this.toast_service.info('User unlogged')
+              }
             }
           }
         },

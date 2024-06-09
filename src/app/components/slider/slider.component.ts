@@ -16,7 +16,6 @@ export class SliderComponent implements OnInit {
 
   ngOnInit(): void {
       this.path_images = this.images.map((image : string) => this.root_path + image)
-      console.log(this.path_images)
       
   }
 }

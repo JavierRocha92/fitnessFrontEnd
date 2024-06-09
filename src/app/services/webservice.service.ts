@@ -48,8 +48,7 @@ export class WebserviceService {
     //     // 'Authorization': `hola mundo`,
     //   });
     // }
-    console.log('este es el headers')
-    console.log(req_headers)
+    
 
     /* Realizamos la peticion post */
     this.http
@@ -63,7 +62,6 @@ export class WebserviceService {
           callBack(response);
         },
         (error) => {
-          console.log('hay error');
           this.toast_service.error('Maintenance applicattion')
           this.user_service.logOut()
           callError(error);

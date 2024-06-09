@@ -17,16 +17,16 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="close_button"></button>
       </div>
       <div class="modal-body">
-        @switch(form_to_show){
-        @case ('profile') {
+        
+        @if (form_to_show == 'profile'){
 
         <app-register-form (onReponseSuccess)='closeModal()' class="register-form"></app-register-form>
         }
-        @case ('measures') {
+        @if (form_to_show == 'measures'){
 
         <app-measure-form (onReponseSuccess)='closeModal()' class="register-form"></app-measure-form>
         }
-        }
+        
 
        
       </div>

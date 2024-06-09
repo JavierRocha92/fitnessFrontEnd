@@ -1,4 +1,4 @@
-import { Component, Input, Output } from '@angular/core';
+import { Component, Input, Output, OnChanges, SimpleChanges } from '@angular/core';
 import { EventEmitter } from '@angular/core';
 @Component({
   selector: 'app-modal-confirmation',
@@ -7,17 +7,27 @@ import { EventEmitter } from '@angular/core';
   templateUrl: './modal-confirmation.component.html',
   styleUrl: './modal-confirmation.component.css'
 })
-export class ModalConfirmationComponent {
-  @Input() virtual_user_id : string | null | undefined
-  @Input() virtual_user_name !: string
+export class ModalConfirmationComponent implements OnChanges {
+  @Input() virtual_user_on_delete : any
   @Output() onDeleteConfirmation = new EventEmitter<string>();
+
 
   
   constructor(){}
-  
-  enviarMensaje() {
-    if(this.virtual_user_id)
-      this.onDeleteConfirmation.emit(this.virtual_user_id);
+
+  ngOnChanges(changes: SimpleChanges): void {
+      if(changes['virtual_user_on_delete']){
+        this.virtual_user_on_delete = this.virtual_user_on_delete
+      }
   }
+  
+  onConfirm() {
+    if(this.virtual_user_on_delete)
+      this.onDeleteConfirmation.emit(this.virtual_user_on_delete.ID);
+    document.getElementById('close-button')?.click()
+  }
+
+  
+ 
 
 }

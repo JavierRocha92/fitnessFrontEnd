@@ -178,7 +178,6 @@ export class RegisterFormComponent implements OnInit {
 
   sendData() {
     this.isLoading = true;
-    console.log(`estoy cargando ${this.isLoading}`);
 
     return new Promise(async (resolve, reject) => {
       this.web_service.post(
@@ -210,7 +209,6 @@ export class RegisterFormComponent implements OnInit {
 
         (error: any) => {
           reject(error);
-          console.log('respuesta de error en el server');
           this.isLoading = false;
           this.toast_service.error('Something went wrong');
         }
@@ -228,8 +226,7 @@ export class RegisterFormComponent implements OnInit {
     
     /* calculara a mano el imc y la grasa de las medidas originales */
     this.processUserValues();
-   console.log('final user')
-   console.log(this.user_to_insert)
+
 
   }
 
@@ -296,18 +293,7 @@ export class RegisterFormComponent implements OnInit {
     age: number,
     gender: 'male' | 'female'
   ): number {
-    console.log('weight')
-    console.log(weight)
-    console.log('height')
-    console.log(height)
-    console.log('waistCircumference')
-    console.log(waistCircumference)
-    console.log('hipCircumference')
-    console.log(hipCircumference)
-    console.log('age')
-    console.log(age)
-    console.log('gender')
-    console.log(gender)
+    
     const bmi = this.getBMI(weight, height);
 
     // Calcular el porcentaje de grasa corporal
@@ -337,8 +323,6 @@ export class RegisterFormComponent implements OnInit {
       bodyFatPercentageProcessed += 4; // Añadir 4 al porcentaje de grasa corporal si la age es mayor o igual a 50
     }
 
-    console.log('este es el porcentaje de graasa')
-    console.log(bodyFatPercentageProcessed)
 
     
 

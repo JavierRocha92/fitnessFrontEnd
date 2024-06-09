@@ -26,7 +26,10 @@
         Gain Mass
       }
     </span>
-   
-    <app-modal-confirmation (onDeleteConfirmation) = 'deleteVirtualUser()' [virtual_user_id] = 'virtual_user_id' [virtual_user_name] = 'name'></app-modal-confirmation>
+    <button (click) = 'onClickButton()' type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-confirmation">
+      Delete
+    </button>
+    
+     
   </div>
 </div>

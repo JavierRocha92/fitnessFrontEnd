@@ -117,7 +117,6 @@ export class RecipesService {
     } else {
       url = url_param;
     }
-    console.log(url);
     return this.http.get(url);
   }
 

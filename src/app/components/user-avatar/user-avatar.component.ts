@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { TokenService } from '../../services/token.service';
 import { UsersService } from '../../services/users.service';
@@ -15,6 +15,7 @@ import { ModalConfirmationComponent } from '../modal-confirmation/modal-confirma
   styleUrl: './user-avatar.component.css',
 })
 export class UserAvatarComponent implements OnInit{
+  @Output() onOpenModal = new EventEmitter()
   @Input() virtual_user : any
   isLoading: boolean = false;
   virtual_user_id: string | null | undefined;
@@ -24,6 +25,7 @@ export class UserAvatarComponent implements OnInit{
   bmi : number = 0
   body_fat : number = 0
   name : string = ''
+  showModal : boolean = false
 
   constructor(
     private router: Router,
@@ -34,7 +36,6 @@ export class UserAvatarComponent implements OnInit{
   ) {}
 
  ngOnInit(): void {
-  console.log(this.virtual_user)
 
      this.name = this.virtual_user.Name
      this.goal = this.virtual_user.Goal
@@ -47,44 +48,48 @@ export class UserAvatarComponent implements OnInit{
     this.router.navigate([`/layout/${this.virtual_user.ID}`]);
   }
 
-  deleteVirtualUser() {
-    this.sendData(this.virtual_user.ID);
+  // deleteVirtualUser() {
+  //   this.sendData(this.virtual_user.ID);
+  // }
+
+  // sendData(virtual_virtual_user_id: string) {
+  //   this.virtual_user_id = this.user_service.getUserData()?.ID;
+  //   const data = { virtual_virtual_user_id: virtual_virtual_user_id };
+  //   this.isLoading = true;
+
+  //   return new Promise(async (resolve, reject) => {
+  //     this.web_service.delete(
+  //       '/register/virtual',
+  //       [this.virtual_user_id, virtual_virtual_user_id],
+  //       (response: any) => {
+  //         resolve(response);
+  //         if (response.success) {
+  //           this.toast_service.success('User deletion successfully')
+  //           this.token_service.saveToken(response.token);
+  //           this.user_service.setUser(
+  //             response.user,
+  //             response.virtual_users,
+  //             response.avg_data
+  //           );
+  //           this.isLoading = false;
+  //           this.router.navigate(['/user-avatar']);
+  //         }else{
+  //           this.toast_service.info('User deltion unsuccessfully')
+  //         }
+  //       },
+
+  //       (error: any) => {
+  //         reject(error);
+  //         this.isLoading = false;
+  //         this.toast_service.error('Something went wrong')
+  //       }
+  //     );
+  //   });
+  // }
+
+  onClickButton(){
+    this.onOpenModal.emit(this.virtual_user)
   }
 
-  sendData(virtual_virtual_user_id: string) {
-    this.virtual_user_id = this.user_service.getUserData()?.ID;
-    const data = { virtual_virtual_user_id: virtual_virtual_user_id };
-    this.isLoading = true;
-    console.log(`estoy cargando ${this.isLoading}`);
 
-    return new Promise(async (resolve, reject) => {
-      this.web_service.delete(
-        '/register/virtual',
-        [this.virtual_user_id, virtual_virtual_user_id],
-        (response: any) => {
-          resolve(response);
-          if (response.success) {
-            this.toast_service.success('User deletion successfully')
-            this.token_service.saveToken(response.token);
-            this.user_service.setUser(
-              response.user,
-              response.virtual_users,
-              response.avg_data
-            );
-            this.isLoading = false;
-            this.router.navigate(['/user-avatar']);
-          }else{
-            this.toast_service.info('User deltion unsuccessfully')
-          }
-        },
-
-        (error: any) => {
-          reject(error);
-          console.log('respuesta de error en el server');
-          this.isLoading = false;
-          this.toast_service.error('Something went wrong')
-        }
-      );
-    });
-  }
 }

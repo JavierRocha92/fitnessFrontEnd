@@ -15,8 +15,6 @@ export class TableRecipeComponent implements OnInit {
 
 constructor(private recipe_service : RecipesService){}
 ngOnInit(): void {
-  console.log('esta es la receta')
-  console.log(this.recipe)
 
 }
 removeItem(){

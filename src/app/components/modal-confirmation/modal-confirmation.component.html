@@ -1,23 +1,23 @@
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-    Delete
-  </button>
+
+
   
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+  <div class="modal fade" id="modal-confirmation" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <h1 class="modal-title fs-5" id="exampleModalLabel">Delete virtual user</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <button type="button" id="close-button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          Are you sure to delete virutal user {{virtual_user_name}}
+          Are you sure to delete virutal user {{virtual_user_on_delete?.Name}}
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Decline</button>
-          <button type="button" class="btn btn-primary">Accept</button>
+          <button (click) = 'onConfirm()' type="button" class="btn btn-primary">Accept</button>
         </div>
       </div>
     </div>
-  </div>
+  </div> 
+
+

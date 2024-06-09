@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AreaComponent } from '../area/area.component';
-import { GraphComponent } from '../graph/graph.component';
 import { UsersService } from '../../services/users.service';
 import { User, Virtual_user, Virtual_users } from '../../types/user';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -16,7 +15,6 @@ import { RecipesService } from '../../services/recipes.service';
   standalone: true,
   imports: [
     AreaComponent,
-    GraphComponent,
     MultiAreaComponent,
     UserAvatarComponent,
     RadarComponent,
@@ -44,6 +42,7 @@ export class LayoutComponent implements OnInit {
     this.user_service.checkSession()
     this.route.params.subscribe((params) => {
       this.virtual_user_id = params['id'];
+      
       this.setVirtulUserData();
     });
     this.user_service.newLocalStorageDataIsSet().subscribe((data: any) => {

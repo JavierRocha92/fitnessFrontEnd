@@ -16235,7 +16235,6 @@ export class RecipesComponent implements OnInit {
 
   sendData() {
     this.isLoading = true;
-    console.log(`estoy cargando ${this.isLoading}`);
 
     return new Promise(async (resolve, reject) => {
       this.web_service.post(
@@ -16254,7 +16253,6 @@ export class RecipesComponent implements OnInit {
 
         (error: any) => {
           reject(error);
-          console.log('respuesta de error en el server');
           this.isLoading = false;
           this.toast_service.error('Something wnet wrong')
         }

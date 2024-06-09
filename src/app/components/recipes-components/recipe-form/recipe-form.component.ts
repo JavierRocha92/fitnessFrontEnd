@@ -15849,7 +15849,7 @@ export class RecipeFormComponent implements OnInit {
   searchRecipe(form_data: FormData): void {
     this.recipe_service.fetchRecipe(form_data).subscribe(
       (data: any) => {
-        console.log(data)
+       
         
       const recipes = {
         'recipes': data.hits,

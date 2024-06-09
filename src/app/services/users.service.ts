@@ -19,8 +19,7 @@ export class UsersService {
     localStorage.setItem('user', JSON.stringify(user));
     localStorage.setItem('virtual_users', JSON.stringify(virtual_users));
     localStorage.setItem('avg_data', JSON.stringify(avg_data));
-    console.log('este es el avg en el set user')
-    console.log(avg_data)
+   
     this.updateUserLoggedStatus(true)
     this.user = user;
     this.virtual_users = virtual_users;

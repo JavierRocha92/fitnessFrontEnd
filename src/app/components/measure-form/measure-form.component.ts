@@ -118,7 +118,6 @@ export class MeasureFormComponent {
         (error: any) => {
           reject(error);
           this.toast_service.error('Something went wrong');
-          console.log('respuesta de error en el server');
           this.isLoading = false;
           this.emitEvent()
         }
@@ -170,18 +169,7 @@ export class MeasureFormComponent {
     age: number,
     gender: 'male' | 'female'
   ): number {
-    console.log('weight')
-    console.log(weight)
-    console.log('height')
-    console.log(height)
-    console.log('waistCircumference')
-    console.log(waistCircumference)
-    console.log('hipCircumference')
-    console.log(hipCircumference)
-    console.log('age')
-    console.log(age)
-    console.log('gender')
-    console.log(gender)
+    
     const bmi = this.getBMI(weight, height);
 
     // Calcular el porcentaje de grasa corporal
@@ -211,10 +199,7 @@ export class MeasureFormComponent {
       bodyFatPercentageProcessed += 4; // Añadir 4 al porcentaje de grasa corporal si la age es mayor o igual a 50
     }
 
-    console.log('este es el porcentaje de graasa')
-    console.log(bodyFatPercentageProcessed)
 
-    
 
     return bodyFatPercentageProcessed;
   }

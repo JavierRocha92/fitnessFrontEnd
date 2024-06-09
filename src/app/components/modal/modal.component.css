@@ -1,12 +1,14 @@
 .modal-content{
     /* width: 900px !important; */
     margin: 0 auto !important;
+
 }
 .modal-body, .register-form{
     width: 100%;
     border: 2px solid black;
     padding: 5px;
 }
+
 .button-add {
     /* margin: 20px 0 10px 0; */
     background-color: #1876cda8;
