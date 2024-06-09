@@ -1,6 +1,5 @@
 <div class="virtual-users">
     @if(virtual_users && virtual_users.length){
-    <h1>Estos son tus usuarios virtuales</h1>
     <div class="virtual-users__container d-flex flex-wrap gap-5 p-5">
         @for(virtual_user of virtual_users; track virtual_user.ID;){
         <app-user-avatar (onOpenModal) = 'showModal($event)' [virtual_user]='virtual_user'></app-user-avatar>

@@ -28,9 +28,11 @@ export class MealPlannerTableComponent implements OnInit {
     this.recipes_service
       .getMealPlannerFromDatabase(this.user_on_demand['ID'])
       .then((response: any) => {
+        
         if (response) {
           if (response.success) {
             this.meal_planner = JSON.parse(response.data[0].planning);
+            
             this.recipes_service.setRecipesPlannerToLocalStorage(
               this.meal_planner
             );
@@ -59,6 +61,8 @@ export class MealPlannerTableComponent implements OnInit {
     });
   }
 
+
+
   addDietToPlanner(meal_type: string, day: string) {
     this.recipes_service.addRecipeToPlanner(this.recipe_id, day, meal_type);
   }
@@ -66,9 +70,10 @@ export class MealPlannerTableComponent implements OnInit {
     this.recipes_service.removeRecipeFromPlanner(day, meal_type);
   }
 
-  
 
   isEmpty(object: any) {
     return Object.keys(object).length === 0;
   }
 }
+
+

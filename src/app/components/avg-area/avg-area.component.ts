@@ -57,12 +57,19 @@ export class AvgAreaComponent implements OnInit {
       xaxis: {
         categories: [],
         labels: {
-          show: true // Oculta las etiquetas del eje X
+          show: true,
+          style: {
+            colors: ['#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFFFFF'],
+            fontSize: '12px',
+            fontFamily: 'Helvetica, Arial, sans-serif',
+            fontWeight: 'bold'
+          }
         }
       },
       yaxis: {
         show: false 
       },
+     
      
       annotations: {
         points: [
@@ -133,8 +140,7 @@ export class AvgAreaComponent implements OnInit {
   isInRange(label : string, user_xaxis_value : number){
     const min = parseInt(label.slice(0, label.indexOf('-')))
     const max = parseInt(label.slice(label.indexOf('-') + 1))
-
-    return min < user_xaxis_value && user_xaxis_value < max
+    return min <= user_xaxis_value && user_xaxis_value <= max
   }
 
   getProcessedData(avg_sorted_data : any){

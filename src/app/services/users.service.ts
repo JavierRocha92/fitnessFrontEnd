@@ -75,8 +75,11 @@ export class UsersService {
   getVirtualUserOnOFocus(): Virtual_user | null {
     const virtual_user_on_focus = localStorage.getItem('virtual_user_on_focus');
 
-    if (virtual_user_on_focus) return JSON.parse(virtual_user_on_focus);
-    else return null;
+
+    if (virtual_user_on_focus || virtual_user_on_focus != 'undefined'){
+      return JSON.parse(virtual_user_on_focus as any);
+    }
+    return null;
   }
 
   getAvgData() {
@@ -127,8 +130,12 @@ export class UsersService {
     this.router.navigate(['/'])
   }
   checkVirtualUserActive(){
-    if (!this.getVirtualUserOnOFocus())
+    console.log('entro en el chekc de civirtual')
+    console.log(this.getVirtualUserOnOFocus())
+    if (!this.getVirtualUserOnOFocus()){
+      console.log('entro en el codncional de redicreccion')
       this.router.navigate(['/user-avatar'])
+      }
   }
   removeSeries(){
     const prefijos = ['measures', 'calories']

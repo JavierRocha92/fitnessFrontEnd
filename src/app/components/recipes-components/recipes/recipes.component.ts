@@ -16223,7 +16223,7 @@ export class RecipesComponent implements OnInit {
   onSaveMealPlanner() {
     const meal_planner = this.recipe_service.getMealPlannerFromLocalStorage();
     if (meal_planner){
-       meal_planner
+
        this.data_to_save = {
         'virtual_user' : this.user_service.getVirtualUserOnOFocus(),
         'meal_planner' : meal_planner
@@ -16232,6 +16232,7 @@ export class RecipesComponent implements OnInit {
       this.sendData();
     }
   }
+  
 
   sendData() {
     this.isLoading = true;
@@ -16289,3 +16290,7 @@ export class RecipesComponent implements OnInit {
     this.toast_service.success('Recipe successfully adding', 'Success');
   }
 }
+
+
+
+
