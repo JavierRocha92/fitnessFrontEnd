@@ -55,6 +55,8 @@ export class AreaComponent implements OnInit, AfterViewInit {
     // this.image_path = this.image_path
     this.image_path = this.image_path + this.image_name 
     this.series = this.setSeriesData();
+    console.log('estas con las measrues')
+    console.log(this.measures)
     this.dates = this.setDatesData();
     this.setInitialData()
     
@@ -185,7 +187,7 @@ export class AreaComponent implements OnInit, AfterViewInit {
   
   public setInitialData(){
     if(this.set_initial_data){
-      
+      console.log('entro porque hay initial date')
       this.chart_service.addNewSeries(this.asJson());
     }
 

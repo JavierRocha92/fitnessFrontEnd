@@ -9,6 +9,7 @@ import { RadarComponent } from '../radar/radar.component';
 import { AvgAreaComponent } from '../avg-area/avg-area.component';
 import { ModalComponent } from '../modal/modal.component';
 import { RecipesService } from '../../services/recipes.service';
+import { ChartSeriesServiceService } from '../../services/chart-series-service.service';
 
 @Component({
   selector: 'app-layout',
@@ -35,7 +36,8 @@ export class LayoutComponent implements OnInit {
     private user_service: UsersService,
     private route: ActivatedRoute,
     private router: Router,
-    private recipe_service : RecipesService
+    private recipe_service : RecipesService,
+    private chart_service : ChartSeriesServiceService
   ) {}
 
   ngOnInit(): void {
@@ -63,6 +65,7 @@ export class LayoutComponent implements OnInit {
   changeVirtualUser() {
     this.user_service.deleteVirtualUserOnOFocus();
     this.recipe_service.deleteMealPlannerFromLocalstorage()
+    this.chart_service.setDefaultValues()
     this.router.navigate(['/user-avatar']);
     
   }

@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Injectable, OnChanges, SimpleChanges } from '@angular/core';
+import { Observable, BehaviorSubject, } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
@@ -12,6 +12,10 @@ export class ChartSeriesServiceService {
     return this.series_subject.asObservable();
   }
 
+  setDefaultValues(){
+    this.series = []
+  }
+
   addNewSeries(serie_to_add: any): void {
     
     // if (this.series.length > 1) {
@@ -19,8 +23,11 @@ export class ChartSeriesServiceService {
       (item: any) =>
         item.name === serie_to_add.name && item.type === serie_to_add.type
     );
+    // console.log('este es el indice que obtengo en la busqueda')
+    // console.log(index_of_data)
     if (index_of_data === -1) this.series.push(serie_to_add);
     else if (this.series[index_of_data].type != 'Weight') {
+      /* las series que tengo en este componente no estan anctualizadas realmente con las que tiene que ser */
       this.series.splice(index_of_data, 1);
     }
     
