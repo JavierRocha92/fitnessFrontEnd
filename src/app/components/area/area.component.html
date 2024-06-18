@@ -6,7 +6,7 @@
   <div id="chart" class="chart-area d-flex align-items-center" (click) = 'handleChartClick($event)'>
     <img class="card__image w-50" [src]="image_path" alt="">
 
-  <p class="card__info fs-3 w-50">{{last_value}}</p>
+  <p class="card__info fs-4 w-50">{{last_value}}</p>
       <apx-chart class="grid d-none"
         [series]="chartOptions.series"
         [chart]="chartOptions.chart"

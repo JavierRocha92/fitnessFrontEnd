@@ -1,8 +1,13 @@
 <div class="main w-100 d-flex flex-column align-items-center  p-5 border">
     <div class="visor position-relative w-100 border p-5 row align-items-center justify-content-center">
         @if(!user_active){
+            @if(show_register_form){
+                <app-register-user-form (onChangeFormRegister) = 'toggleForm($event)' class=" d-flex justify-content-center col-lg-6">
 
-            <app-login-form class=" d-flex justify-content-center col-lg-6"></app-login-form>
+                </app-register-user-form>
+            }@else{
+                <app-login-form (OnChangeFormLogin) = 'toggleForm($event)' class=" d-flex justify-content-center col-lg-6"></app-login-form>
+            }
         }
         <h1 class="text-light col-lg-6">Unleash your potential, one rep at a time. Get fit, feel great!</h1>
     </div>

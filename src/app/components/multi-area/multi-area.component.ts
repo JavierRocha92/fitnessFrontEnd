@@ -96,13 +96,14 @@ export class MultiAreaComponent implements OnInit, AfterViewInit {
   }
 
  ngAfterViewInit(): void {
-    // this.chartOptions.chart.width = '800px'
+   
  }
 
   ngOnInit(): void {
     this.user_on_demand = this.user_service.getVirtualUserOnOFocus();
 
     this.chart_service.getSeries().subscribe((data: any) => {
+      
       this.series = data.filter((item: any) => item.name === this.name);
       this.chartOptions.series = this.setSeriesData();
       this.chartOptions.xaxis.categories = this.setDatesData();
@@ -112,6 +113,7 @@ export class MultiAreaComponent implements OnInit, AfterViewInit {
   
 
   public setSeriesData() {
+    
     return this.series.map((serie: any) => {
       return { name: serie.type, data: serie.series };
     });

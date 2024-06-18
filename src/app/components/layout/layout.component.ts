@@ -42,6 +42,7 @@ export class LayoutComponent implements OnInit {
 
   ngOnInit(): void {
     this.user_service.checkSession()
+    this.user_service.checkVirtualUserActive()
     this.route.params.subscribe((params) => {
       this.virtual_user_id = params['id'];
       
@@ -60,6 +61,7 @@ export class LayoutComponent implements OnInit {
       (virtual_user: Virtual_user) => virtual_user.ID == this.virtual_user_id
     );
     this.user_service.setVirtualUserOnOFocus(this.user_on_demand);
+
   }
 
   changeVirtualUser() {
@@ -67,6 +69,7 @@ export class LayoutComponent implements OnInit {
     this.recipe_service.deleteMealPlannerFromLocalstorage()
     this.chart_service.setDefaultValues()
     this.router.navigate(['/user-avatar']);
+    // window.location.reload()
     
   }
 }

@@ -13,6 +13,7 @@ import {
   NgApexchartsModule,
 } from 'ng-apexcharts';
 import { ChartSeriesServiceService } from '../../services/chart-series-service.service';
+import { UsersService } from '../../services/users.service';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -45,13 +46,16 @@ export class AreaComponent implements OnInit, AfterViewInit {
   image_path = "../../../assets/images/"
   last_value : string | undefined
   @Input() image_name !: string
-  constructor(private chart_service: ChartSeriesServiceService) {}
+  user_on_focus : any
+  constructor(private chart_service: ChartSeriesServiceService, private user_service : UsersService) {}
   ngAfterViewInit(): void {
     
     // this.setInitialData()
     
   }
   ngOnInit(): void {
+    this.series = []
+    this.user_on_focus = this.user_service.getVirtualUserOnOFocus()
     // this.image_path = this.image_path
     this.image_path = this.image_path + this.image_name 
     this.series = this.setSeriesData();
@@ -150,9 +154,17 @@ export class AreaComponent implements OnInit, AfterViewInit {
   public setSeriesData(): any[] {
     let series: any = [];
 
+    if(this.type === 'measures'){
+      this.measures = this.user_on_focus.historical_measurements
+    }else if(this.type === 'calories'){
+      this.measures = this.user_on_focus.historical_bio_data
+    }
+   
+    
     /* Realizar un bucle for para recorrer todos los datos del usuario */
     this.measures.forEach((data: any) => {
       let data_to_show = data[this.type || ''];
+      
       series.push(data_to_show);
     });
 
@@ -184,6 +196,7 @@ export class AreaComponent implements OnInit, AfterViewInit {
   }
   
   public setInitialData(){
+    
     if(this.set_initial_data){
       this.chart_service.addNewSeries(this.asJson());
     }

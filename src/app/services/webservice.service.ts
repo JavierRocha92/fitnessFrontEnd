@@ -10,6 +10,7 @@ type HttpMethod = 'GET' | 'POST' | 'DELETE' | 'UPDATE';
 })
 export class WebserviceService {
   server_url = 'http://127.0.0.1:5000/';
+  // server_url = 'https://fitness-api.meytel.cloud/';
   public_routes = ['login/', 'resgister/'];
   constructor(
     private http: HttpClient,

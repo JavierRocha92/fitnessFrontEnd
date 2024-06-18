@@ -45,6 +45,7 @@ export class UserAvatarComponent implements OnInit{
  }
 
   goToProfile() {
+    this.user_service.setVirtualUserOnOFocus(this.virtual_user)
     this.router.navigate([`/layout/${this.virtual_user.ID}`]);
   }
 

@@ -13,20 +13,24 @@ export class ChartSeriesServiceService {
   }
 
   setDefaultValues(){
+    console.log('se ejecuta el borrado ')
     this.series = []
+    console.log('this.series')
+    console.log(this.series)
   }
 
   addNewSeries(serie_to_add: any): void {
+    console.log('este es el valor de las series cuando entro')
     
-    // if (this.series.length > 1) {
+    console.log(this.series)
     const index_of_data = this.series.findIndex(
       (item: any) =>
         item.name === serie_to_add.name && item.type === serie_to_add.type
     );
-    // console.log('este es el indice que obtengo en la busqueda')
-    // console.log(index_of_data)
+    
     if (index_of_data === -1) this.series.push(serie_to_add);
     else if (this.series[index_of_data].type != 'Weight') {
+      console.log('entro aqui porque las medida no es el peso')
       /* las series que tengo en este componente no estan anctualizadas realmente con las que tiene que ser */
       this.series.splice(index_of_data, 1);
     }
@@ -41,6 +45,7 @@ export class ChartSeriesServiceService {
     return calories.length == 1 && measures.length == 1
   }
   updateSeries() {
+    
     this.series_subject.next(this.series);
     this.getSeries();
   }
