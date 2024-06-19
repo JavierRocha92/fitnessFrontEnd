@@ -253,9 +253,9 @@ export class ExercisesComponent implements OnInit{
       this.exercises = data
       this.isLoading= false
     });
-    if(!this.exercises.length){
-      this.setDefaultData();
-    }
+    // if(!this.exercises.length){
+    //   this.setDefaultData();
+    // }
   }
   
   setDefaultData(){

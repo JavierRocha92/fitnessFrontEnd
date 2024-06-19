@@ -80,7 +80,7 @@ export class RecipeFormComponent implements OnInit {
     });
    
 
-    // this.searchRecipe(this.default_data)
+    this.searchRecipe(this.default_data)
   }
 
   sendData(): void {

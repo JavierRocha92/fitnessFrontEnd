@@ -43,7 +43,7 @@ export class FormExerciseComponent {
       name: this.body_partControl,
     });
 
-    // this.sendData({name : 'cardio'})
+    this.sendData({name : 'cardio'})
   }
 
   handlerForm() {

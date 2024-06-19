@@ -15869,10 +15869,10 @@ export class RecipesComponent implements OnInit {
       }
     )
 
-    if(!this.current_recipes){
-      this.isLoading = false
-      this.setrequestData(this.initial_data)
-    }
+    // if(!this.current_recipes){
+    //   this.isLoading = false
+    //   this.setrequestData(this.initial_data)
+    // }
 
     /* Lamada al servicio de recipes para que recupere la informacion del mealplanner del usuario de la base de datos */
     // this.virtual_user_on_demand = this.user_service.getVirtualUserOnOFocus()
